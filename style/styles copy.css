@@ -91,75 +91,63 @@ html {
   height: 100%;
   font-family: 'Poppins', sans-serif;
   /* Set the font-family to Poppins */
-  background: url('https://raw.githubusercontent.com/1mcreative/static/main/project/background/pattern.png'), url('https://raw.githubusercontent.com/1mcreative/static/main/project/background/background.png'), white;
+  background: url('../static/image/pattern.png'), url('../static/image/background.png'), white;
   background-size: cover;
   position: relative;
-  z-index: 1;
 }
 
-/* Header Container */
 header {
   display: flex;
-  flex-wrap: wrap;
-  /* Allow items to wrap to the next line */
-  align-items: center;
-  /* Center items vertically */
   justify-content: space-between;
-  /* Space out items */
-  padding: 1vw;
+  align-items: center;
+  padding: 30px;
+  position: absolute;
+  top: 0;
+  width: 100%;
   z-index: 10;
+  background-color: rgba(0, 0, 0, 0);
+  /* Transparent background */
 }
 
-/* Header Name */
 .header-name {
   color: #000000;
-  font-size: 1.5vw;
-  /* Responsive font size based on viewport width */
+  font-size: 18px;
   text-decoration: none;
   font-weight: lighter;
-  /* flex: 1; */
-  /* Allow header name to take available space */
-  width: 50%;
 }
 
-/* Social Icons Container */
 .social-icons {
   display: flex;
+  /* Use flexbox for layout */
   align-items: center;
   /* Center align items vertically */
-  z-index: 10;
-  width: 20%;
-  justify-content: space-between;
-  /* Space items evenly */
+  justify-content: flex-end;
+  /* Align icons to the right */
+  margin-left: auto;
+  /* Automatically take remaining space on the left */
 }
 
-/* Individual Social Icon Links */
 .social-icons a {
-  /* margin-left: 3vw; */
-  /* Responsive margin between icons */
+  margin-left: 50px;
+  /* Space between icons */
   text-decoration: none;
   /* Remove underline from links */
 }
 
-/* Social Icon Styles */
 .social-icon {
-  width: 4vw;
-  /* Responsive width */
-  height: 4vw;
-  /* Responsive height */
-  max-width: 32px;
-  /* Max width to prevent overflow */
-  max-height: 32px;
-  /* Max height to prevent overflow */
+  width: 32px;
+  /* Set a fixed width for icons */
+  height: 32px;
+  /* Set a fixed height for icons */
   transition: transform 0.3s;
   /* Add transition for hover effect */
 }
 
-/* Hover Effect for Social Icons */
 .social-icon:hover {
   transform: scale(1.1);
   /* Slightly enlarge on hover */
 }
+
 
 .main-content {
   display: flex;
@@ -171,12 +159,16 @@ header {
   padding: 50px;
 }
 
+.left-section,
+.right-section {
+  width: 50%;
+  padding: 0px;
+}
+
 .left-section {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
-  padding: 0px;
 }
 
 .profile-photo {
@@ -201,7 +193,6 @@ header {
   flex-direction: column;
   justify-content: center;
   padding: 0px;
-  width: 50%;
   text-align: left;
   color: rgb(0, 0, 0);
 }
@@ -292,28 +283,16 @@ header {
   position: relative;
   /* Ensure the section has a positioning context */
   padding: 20px;
-  padding-top: 1vh;
+  padding-top: 80px;
   z-index: 5;
   /* Make sure it's above the highlight image */
 }
 
 .image-content img {
   width: 100%;
-  display: block;
-  /* Ensures the image is treated as a block element */
-  border-radius: 10px;
-  /* Optional: rounds the corners */
+  display: block;               /* Ensures the image is treated as a block element */
+  border-radius: 10px;          /* Optional: rounds the corners */
   margin: auto;
-}
-
-.image-content iframe {
-  width: 100%;
-  display: block;
-  /* Ensures the image is treated as a block element */
-  border-radius: 10px;
-  /* Optional: rounds the corners */
-  margin: auto;
-  height: 95vh;
 }
 
 /* Back to Top Button Styling */
@@ -359,7 +338,7 @@ header {
   display: flex;
   min-height: 100%;
   justify-content: center;
-  margin-top: 2%;
+  margin-top:2%;
 }
 
 .card-grid {
@@ -400,7 +379,7 @@ header {
   transform: scale(1.01) translateZ(0);
 }
 
-.card-grid:hover>.card:not(:hover) .card__background {
+.card-grid:hover > .card:not(:hover) .card__background {
   filter: brightness(0.9) saturate(0.5) contrast(1.2) blur(1px);
 }
 
@@ -412,19 +391,17 @@ header {
   color: #CD4A00;
   font-size: 16px;
   transition: color 200ms ease, transform 200ms ease;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
-  /* Adds a subtle shadow */
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7); /* Adds a subtle shadow */
 }
 
 .card:hover .hashtags {
-  color: #ffffff;
-  /* Changes color on hover */
+  color: #ffffff; /* Changes color on hover */
   transform: scale(1.01);
 }
 
 
 .scroll-down {
-  position: absolute;
+  position:absolute;
   left: 50%;
   display: block;
   width: 30px;
@@ -479,125 +456,5 @@ header {
 
 /* Styles for mobile */
 @media (max-width: 575px) {
-
-  .social-icons {
-    width: 100%;
-    /* Full width on small screens */
-    display: flex;
-    /* Use flexbox */
-    align-items: center;
-    /* Center vertically */
-    text-align: center;
-    /* Center text horizontally */
-    justify-content: space-between;
-    /* Space items evenly */
-    padding-inline: 10vh;
-    z-index: 10;
-  }
-
-  .social-icon {
-    width: 6vw;
-    /* Responsive width */
-    height: 6vw;
-    z-index: 10;
-  }
-
-  .social-icons a {
-    z-index: 10;
-  }
-
-  header {
-    display: block;
-  }
-
-  .header-name {
-    width: 100%;
-    /* Full width on small screens */
-    font-size: 6vw;
-    z-index: 10;
-    padding: 1vh;
-  }
-
-  .name {
-    display: flex;
-    /* Use flexbox */
-    justify-content: center;
-    /* Center horizontally */
-    align-items: center;
-    /* Center vertically */
-    text-align: center;
-    /* Center text horizontally */
-  }
-
-  .main-content {
-    display: block;
-    height: calc(100vh - 60px);
-    /* Adjust height to account for the header */
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: 40px;
-  }
-
-  .left-section,
-  .right-section {
-    width: 100%;
-    /* Full width on small screens */
-    padding: 0px;
-    /* Some padding */
-    text-align: center;
-  }
-
-  .resume-button {
-    display: block;
-    /* Make the link behave like a button */
-    padding: 5px 20px;
-    width: 100%;
-    /* Set a specific width */
-  }
-
-  .image-content {
-    padding: 10px;
-    padding-top: 1vh;
-    z-index: 5;
-    /* Make sure it's above the highlight image */
-  }
-
-  .image-content iframe {
-    width: 100%;
-    display: block;
-    /* Ensures the image is treated as a block element */
-    border-radius: 10px;
-    /* Optional: rounds the corners */
-    margin: auto;
-    height: 50vh;
-  }
-
-  .hero-section {
-    display: block;
-    min-height: 100%;
-    align-items: center;
-    justify-content: center;
-    margin-top: 15vh;
-  }
-
-  .card-grid {
-    width: 100%;
-  }
-
-  .card {
-    display: block;
-    height: 40vh;
-    align-items: center;
-    justify-content: center;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-
-  .hashtags {
-    bottom: 1vh;
-    left: 10vw;
-    font-size: 1.5vh;
-  }
+  /* ... */
 }
