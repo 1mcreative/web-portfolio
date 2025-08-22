@@ -1,121 +1,234 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const profilePhoto = document.getElementById('profilePhoto');
+// Custom Mouse Pointer Script
+document.addEventListener('DOMContentLoaded', function() {
+   try {
+     const pointer = document.getElementById('custom-pointer');
+     if (!pointer) {
+       console.warn('Custom pointer element not found');
+       return;
+     }
 
-  // Check if the profile photo element is present
-  if (profilePhoto) {
-    document.addEventListener('mousemove', (event) => {
-      // Get the position of the mouse relative to the window
-      const mouseX = event.clientX;
-      const mouseY = event.clientY;
+     // Toggle between proximity (A) and hover (B) mode
+     let mode = 'B'; // Change to 'B' for hover-only
 
-      // Get the center position of the profile photo
-      const rect = profilePhoto.getBoundingClientRect();
-      const photoX = rect.left + rect.width / 2;
-      const photoY = rect.top + rect.height / 2;
+     // Only run pointer and shadow animation on desktop browsers
+     function isDesktopBrowser() {
+       return window.matchMedia('(pointer: fine) and (min-width: 992px)').matches;
+     }
 
-      // Calculate the shadow direction based on mouse position
-      const deltaX = mouseX - photoX;
-      const deltaY = mouseY - photoY;
+     if (isDesktopBrowser()) {
+       document.addEventListener('mousemove', function(e) {
+         const profilePhoto = document.getElementById('profilePhoto');
+         if (profilePhoto && pointer) {
+           pointer.style.display = '';
+           const rect = profilePhoto.getBoundingClientRect();
+           const mouseX = e.clientX;
+           const mouseY = e.clientY;
+           const photoX = rect.left + rect.width / 2;
+           const photoY = rect.top + rect.height / 2;
+           const dist = Math.sqrt(Math.pow(mouseX - photoX, 2) + Math.pow(mouseY - photoY, 2));
 
-      // Calculate shadow offset
-      const shadowOffsetX = deltaX / 10; // Increased X-offset for more noticeable movement
-      const shadowOffsetY = deltaY / 30; // Adjust Y-offset accordingly
+           // Animate shadow if pointer is within 200px of the center
+           if (dist < 200) {
+             pointer.style.opacity = '0';
+             const offsetX = (mouseX - photoX) / 4;
+             const offsetY = (mouseY - photoY) / 8;
+             profilePhoto.style.filter = `drop-shadow(${offsetX}px ${offsetY}px 32px rgba(255, 206, 0, 1))`;
+           } else {
+             pointer.style.opacity = '1';
+             profilePhoto.style.filter = 'drop-shadow(0px 0px 16px rgba(255, 206, 0, 0.7))';
+             pointer.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
+           }
+         }
+       });
+     } else {
+       // On mobile/touch, always show static shadow and hide pointer
+       const profilePhoto = document.getElementById('profilePhoto');
+       if (profilePhoto) {
+         profilePhoto.style.filter = 'drop-shadow(0px 0px 16px rgba(255, 206, 0, 0.7))';
+       }
+       if (pointer) {
+         pointer.style.display = 'none';
+       }
+     }
 
-      // Apply the drop-shadow to the profile photo
-      profilePhoto.style.filter = `drop-shadow(${shadowOffsetX}px ${shadowOffsetY}px 20px rgba(255, 206, 0, 0.8))`;
-    });
-  } else {
-    console.error("Profile photo not found!");
-  }
+     // Highlight when hovering over header
+     const header = document.querySelector('header');
+     if (header && pointer) {
+       header.addEventListener('mouseenter', function() {
+         pointer.classList.add('highlight');
+       });
+       header.addEventListener('mouseleave', function() {
+         pointer.classList.remove('highlight');
+       });
+     }
+
+     // Animate pointer when hovering over interactive elements
+     const interactiveSelectors = 'a, button, .social-icon, .card, .resume-button';
+     document.querySelectorAll(interactiveSelectors).forEach(el => {
+       if (el && pointer) {
+         el.addEventListener('mouseenter', () => pointer.classList.add('highlight'));
+         el.addEventListener('mouseleave', () => pointer.classList.remove('highlight'));
+       }
+     });
+
+     // Hide pointer when mouse leaves browser window
+     document.addEventListener('mouseleave', function() {
+       if (pointer) pointer.style.opacity = '0';
+     });
+     document.addEventListener('mouseenter', function() {
+       if (pointer) pointer.style.opacity = '1';
+     });
+
+   } catch (error) {
+     console.error('Error initializing custom pointer:', error);
+   }
+ });
+
+
+
+// Loader functionality (consolidated)
+function initLoader() {
+   try {
+     const loaderWrapper = document.getElementById('loader');
+     if (!loaderWrapper) {
+       console.warn('Loader element not found');
+       return;
+     }
+
+     // Hide loader after 3 seconds (reduced from 5 seconds)
+     setTimeout(function () {
+       if (loaderWrapper && !loaderWrapper.classList.contains('hidden')) {
+         loaderWrapper.classList.add('hidden');
+       }
+     }, 3000);
+
+   } catch (error) {
+     console.error('Error initializing loader:', error);
+   }
+ }
+
+// Initialize loader on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', initLoader);
+
+// Also initialize on window load as fallback
+window.addEventListener('load', initLoader);
+
+
+// Consolidated DOMContentLoaded event listener for all features
+document.addEventListener('DOMContentLoaded', function() {
+   try {
+     // Initialize lazy loading for images
+     initLazyLoading();
+
+     // Initialize back to top button
+     initBackToTopButton();
+
+     // Initialize scroll down button
+     initScrollDownButton();
+
+     // Initialize skip link functionality
+     initSkipLink();
+
+   } catch (error) {
+     console.error('Error initializing features:', error);
+   }
 });
 
+function initLazyLoading() {
+   try {
+     const images = document.querySelectorAll("img");
+     images.forEach((img) => {
+       if (img.id !== 'profilePhoto') { // Don't lazy load the main profile photo
+         img.loading = "lazy";
+       }
+     });
+   } catch (error) {
+     console.error('Error initializing lazy loading:', error);
+   }
+}
 
+function initBackToTopButton() {
+   try {
+     const backToTopButton = document.getElementById("back-to-top-button");
+     if (!backToTopButton) return;
 
-window.onload = function () {
-  console.log('Page fully loaded, checking the loader...');
-  const loaderWrapper = document.getElementById('loader');
-  if (loaderWrapper) {
-    loaderWrapper.classList.add('hidden');
-    console.log('Loader hidden because page is fully loaded.');
-  }
-};
+     function checkScrollPosition() {
+       const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+       backToTopButton.style.display = scrollTop > 100 ? "block" : "none";
+     }
 
-// Ensure loader hides after 5 seconds regardless of page load status
-setTimeout(function () {
-  const loaderWrapper = document.getElementById('loader');
-  if (loaderWrapper) {
-    loaderWrapper.classList.add('hidden');
-    console.log('Loader hidden after 2 seconds, even if page is not fully loaded.');
-  }
-}, 5000); // 5-second delay
+     // Throttle scroll events for better performance
+     let ticking = false;
+     function onScroll() {
+       if (!ticking) {
+         requestAnimationFrame(function() {
+           checkScrollPosition();
+           ticking = false;
+         });
+         ticking = true;
+       }
+     }
 
+     window.addEventListener('scroll', onScroll, { passive: true });
+     checkScrollPosition();
 
-document.addEventListener("DOMContentLoaded", function () {
-  const images = document.querySelectorAll("img");
+     backToTopButton.addEventListener("click", function (e) {
+       e.preventDefault();
+       window.scrollTo({
+         top: 0,
+         behavior: "smooth"
+       });
+     });
+   } catch (error) {
+     console.error('Error initializing back to top button:', error);
+   }
+}
 
-  images.forEach((img) => {
-    const baseSrc = img.src.split('.')[0]; // Base path without extension
-    const extension = img.src.split('.').pop(); // File extension
+function initScrollDownButton() {
+   try {
+     const scrollDownButton = document.querySelector('.scroll-down');
+     if (!scrollDownButton) return;
 
-    // img.srcset = `
-    //   ${baseSrc}-small.${extension} 400w,
-    //   ${baseSrc}-medium.${extension} 800w,
-    //   ${baseSrc}-large.${extension} 1200w
-    // `;
+     scrollDownButton.addEventListener('click', function (event) {
+       event.preventDefault();
+       const targetSection = document.querySelector('section.hero-section');
+       if (targetSection) {
+         targetSection.scrollIntoView({ behavior: 'smooth' });
+       }
+     });
 
-    // img.sizes = "(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw";
-    img.loading = "lazy"; // Lazy loading
-  });
-});
+     // Throttle scroll events for better performance
+     let ticking = false;
+     function onScroll() {
+       if (!ticking) {
+         requestAnimationFrame(function() {
+           scrollDownButton.style.display = window.scrollY > 100 ? 'none' : 'block';
+           ticking = false;
+         });
+         ticking = true;
+       }
+     }
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Get the back-to-top button
-  const backToTopButton = document.getElementById("back-to-top-button");
+     window.addEventListener('scroll', onScroll, { passive: true });
+     scrollDownButton.style.display = window.scrollY > 100 ? 'none' : 'block';
+   } catch (error) {
+     console.error('Error initializing scroll down button:', error);
+   }
+}
 
-  // Function to check scroll position and show/hide the button
-  function checkScrollPosition() {
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-      backToTopButton.style.display = "block"; // Show the button when scrolling past the threshold
-    } else {
-      backToTopButton.style.display = "none"; // Hide the button when scroll position is under threshold
-    }
-  }
+function initSkipLink() {
+   try {
+     const skipLink = document.querySelector('.skip-link');
+     if (!skipLink) return;
 
-  // Check the scroll position on page load
-  checkScrollPosition();
-
-  // Show or hide the button based on scroll position when user scrolls
-  window.onscroll = function () {
-    checkScrollPosition();
-  };
-
-  // Smooth scroll to the top when button is clicked
-  backToTopButton.addEventListener("click", function () {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const scrollDownButton = document.querySelector('.scroll-down');
-
-  // Scroll down action
-  scrollDownButton.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent default anchor behavior
-    const targetSection = document.querySelector('section.hero-section');
-    
-    // Smooth scroll to the target section
-    targetSection.scrollIntoView({ behavior: 'smooth' });
-  });
-
-  // Hide button on scroll
-  window.addEventListener('scroll', function () {
-    if (window.scrollY > 100) { // Change '100' to your preferred scroll distance
-      scrollDownButton.style.display = 'none'; // Hide the button
-    } else {
-      scrollDownButton.style.display = 'block'; // Show the button if scrolled back up
-    }
-  });
-});
+     skipLink.addEventListener('click', function(e) {
+       const target = document.getElementById('main-content');
+       if (target) {
+         target.focus();
+         target.scrollIntoView();
+       }
+     });
+   } catch (error) {
+     console.error('Error initializing skip link:', error);
+   }
+}

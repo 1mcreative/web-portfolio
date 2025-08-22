@@ -1,795 +1,772 @@
+/* ==================== CSS CUSTOM PROPERTIES ==================== */
+:root {
+    /* Colors */
+    --primary-color: #CD4A00;
+    --primary-hover: #ffffff;
+    --text-color: #000000;
+    --background-color: #ffffff;
+    --shadow-color: rgba(255, 206, 0, 0.7);
+    --shadow-hover: rgba(255, 206, 0, 1);
+
+    /* Typography */
+    --font-family: 'Poppins', sans-serif;
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 600;
+
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+
+    /* Border radius */
+    --border-radius-sm: 4px;
+    --border-radius-md: 10px;
+    --border-radius-lg: 50%;
+
+    /* Shadows */
+    --shadow-sm: 0 4px 24px rgba(0, 0, 0, 0.15);
+    --shadow-md: 0px 0px 16px rgba(255, 206, 0, 0.7);
+    --shadow-lg: 0px 0px 32px rgba(255, 206, 0, 1);
+
+    /* Layout */
+    --header-height: 60px;
+    --max-width: 1500px;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    --transition-bounce: 0.4s;
+}
+
+/* ==================== BASE STYLES ==================== */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Loader wrapper to cover the entire screen */
+body, html {
+    height: 100%;
+    font-family: var(--font-family);
+    background: url('https://raw.githubusercontent.com/1mcreative/static/main/project/background/pattern.png'),
+                url('https://raw.githubusercontent.com/1mcreative/static/main/project/background/background.png'),
+                var(--background-color);
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #CD4A00;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 1000;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ==================== LOADER ==================== */
 .loader-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #000;
-  /* Set a background color for contrast */
-  z-index: 9999;
-  /* Ensure it's above all content */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    z-index: 9999;
 }
 
-/* HTML: <div class="loader"></div> */
+.loader-wrapper.hidden {
+    display: none;
+}
+
 .loader {
-  width: fit-content;
-  font-size: 40px;
-  font-family: monospace;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #ffffff00;
-  -webkit-text-stroke: 1px #ffffff 0.0;
-  --g: conic-gradient(#CD4A00 0 0) no-repeat text;
-  background: var(--g) 0, var(--g) 1ch, var(--g) 2ch, var(--g) 3ch, var(--g) 4ch, var(--g) 5ch, var(--g) 6ch, var(--g) 7ch, var(--g) 8ch;
-  background-position-y: 100%, 0;
-  animation: l16 2s linear infinite alternate;
+    width: fit-content;
+    font-size: 40px;
+    font-family: monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffffff00;
+    -webkit-text-stroke: 1px #ffffff 0.0;
+    --g: conic-gradient(#CD4A00 0 0) no-repeat text;
+    background: var(--g) 0, var(--g) 1ch, var(--g) 2ch, var(--g) 3ch, var(--g) 4ch, var(--g) 5ch, var(--g) 6ch, var(--g) 7ch, var(--g) 8ch;
+    background-position-y: 100%, 0;
+    animation: l16 2s linear infinite alternate;
 }
 
 .loader:before {
-  content: "Neha Paul";
+    content: "Neha Paul";
 }
 
 @keyframes l16 {
-  0% {
-    background-size: 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0
-  }
-
-  11.11% {
-    background-size: 1ch 100%, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0
-  }
-
-  22.22% {
-    background-size: 1ch 100%, 1ch 100%, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0
-  }
-
-  33.33% {
-    background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0
-  }
-
-  44.44% {
-    background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0
-  }
-
-  55.55% {
-    background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 0, 1ch 0, 1ch 0, 1ch 0
-  }
-
-  66.66% {
-    background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 0, 1ch 0, 1ch 0
-  }
-
-  77.77% {
-    background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 0, 1ch 0
-  }
-
-  88.88% {
-    background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 0
-  }
-
-  100% {
-    background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%
-  }
+    0% { background-size: 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0; }
+    11.11% { background-size: 1ch 100%, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0; }
+    22.22% { background-size: 1ch 100%, 1ch 100%, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0; }
+    33.33% { background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0; }
+    44.44% { background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0; }
+    55.55% { background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 0, 1ch 0, 1ch 0, 1ch 0; }
+    66.66% { background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 0, 1ch 0, 1ch 0; }
+    77.77% { background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 0, 1ch 0; }
+    88.88% { background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 0; }
+    100% { background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%; }
 }
 
-/* Hide loader when it's no longer needed */
-.loader-wrapper.hidden {
-  display: none;
+/* ==================== CUSTOM POINTER ==================== */
+#custom-pointer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: transparent;
+    pointer-events: none;
+    z-index: 0;
+    box-shadow: 0 0 64px 32px rgba(255, 206, 0, 0.9), 0 0 24px 8px rgba(255, 206, 0, 0.9);
+    transition: width 0.2s, height 0.2s, box-shadow 0.3s, background 0.2s, opacity 0.2s;
+    mix-blend-mode: multiply;
+    opacity: 1;
 }
 
-body,
-html {
-  height: 100%;
-  font-family: 'Poppins', sans-serif;
-  /* Set the font-family to Poppins */
-  background: url('https://raw.githubusercontent.com/1mcreative/static/main/project/background/pattern.png'), url('https://raw.githubusercontent.com/1mcreative/static/main/project/background/background.png'), white;
-  background-size: cover;
-  position: relative;
-  z-index: 1;
+#custom-pointer.highlight {
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    box-shadow: 0 0 96px 48px rgba(255, 206, 0, 0.7), 0 0 32px 12px rgba(255, 206, 0, 0.7);
+    opacity: 0.8;
+    animation: pointer-bounce 0.4s;
 }
 
-/* Highlight image positioned in the top right corner, behind the navigation bar */
+@keyframes pointer-bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* ==================== HIGHLIGHT IMAGE ==================== */
 .highlight-image {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50vw;
-  /* Set the highlight image width to 50% of the viewport */
-  height: auto;
-  /* Maintain aspect ratio */
-  z-index: 0;
-  /* Lower z-index to be behind the navigation bar */
-  transition: width 0.5s ease; 
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50vw;
+    height: auto;
+    z-index: 0;
+    transition: width 0.5s ease;
 }
+
+/* ==================== COMMON STYLES (Desktop Base) ==================== */
 
 /* Header Container */
 .top-bar {
-  display: flex;
-  flex-wrap: wrap;
-  /* Allow items to wrap to the next line */
-  align-items: center;
-  /* Center items vertically */
-  justify-content: space-between;
-  /* Space out items */
-  padding: 1vw;
-  z-index: 10;
-  transition: width 0.5s ease;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1.5rem;
+    z-index: 10;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    height: auto;
+    min-height: 50px;
 }
 
 /* Header Name */
 .header-name {
-  color: #000000;
-  font-size: 1.5vw;
-  /* Responsive font size based on viewport width */
-  text-decoration: none;
-  font-weight: lighter;
-  /* flex: 1; */
-  /* Allow header name to take available space */
-  width: 50%;
-  transition: width 0.5s ease;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-normal), font-size var(--transition-normal);
+    position: relative;
+    line-height: 1;
+    width: 50%;
+}
+
+/* Visual separator after name */
+.header-name::after {
+    content: '';
+    position: absolute;
+    right: -0.3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Social Icons Container */
 .social-icons {
-  display: flex;
-  align-items: center;
-  /* Center align items vertically */
-  z-index: 10;
-  width: 20%;
-  justify-content: space-between;
-  /* Space items evenly */
-  transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    margin-left: auto;
+    flex: 1;
+    width: 50%;
 }
 
-/* Individual Social Icon Links */
+/* Social Icon Links */
 .social-icons a {
-  /* margin-left: 3vw; */
-  /* Responsive margin between icons */
-  text-decoration: none;
-  /* Remove underline from links */
+    text-decoration: none;
 }
 
 /* Social Icon Styles */
 .social-icon {
-  width: 4vw;
-  /* Responsive width */
-  height: 4vw;
-  /* Responsive height */
-  max-width: 32px;
-  /* Max width to prevent overflow */
-  max-height: 32px;
-  /* Max height to prevent overflow */
-  transition: transform 0.3s;
-  /* Add transition for hover effect */
+    width: 4vw;
+    height: 4vw;
+    max-width: 32px;
+    max-height: 32px;
+    transition: transform var(--transition-normal);
 }
 
-/* Hover Effect for Social Icons */
 .social-icon:hover {
-  transform: scale(1.1);
-  /* Slightly enlarge on hover */
+    transform: scale(1.1);
 }
 
+/* Main Content Layout */
 .main-content {
-  display: flex;
-  height: 85vh;
-  /* Adjust height to account for the header */
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 50px;
+    display: flex;
+    flex-direction: row;
+    height: 85vh;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 2rem 4rem;
+    gap: 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .left-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
-  padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: 0;
+    min-width: 300px;
 }
 
 .profile-photo {
-  width: 100%;
-  /* Responsive size */
-  min-width: 300px;
-  max-width: 1500px;
-  /* Set a maximum width for smaller profile photo */
-  height: auto;
-  /* Maintain aspect ratio */
-  transition: transform 0.3s ease;
-  /* Smooth transition for effects */
-}
-
-.profile-photo:hover {
-  transform: scale(1.01);
-  /* Slightly enlarge on hover */
+    width: 100%;
+    max-width: 320px;
+    max-height: 400px;
+    height: auto;
+    transition: transform var(--transition-normal);
+    border-radius: 15px;
+    object-fit: contain;
 }
 
 .right-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0px;
-  width: 50%;
-  text-align: left;
-  color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    padding: 0;
+    text-align: left;
+    color: var(--text-color);
+    min-width: 400px;
 }
 
-/* Custom styles for text */
+/* Typography Styles */
 .greeting {
-  font-size: 64px;
-  font-weight: bold;
-  line-height: 1.2;
+    font-size: 64px;
+    font-weight: bold;
+    line-height: 1.1;
+    margin-bottom: 1rem;
 }
 
 .intro {
-  font-size: 36px;
-  font-weight: bold;
-  line-height: 1.2;
-  /* Adjust line height to reduce space */
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
 }
 
 .subtitle {
-  font-size: 14px;
-  font-weight: lighter;
-  line-height: 1.2;
+    font-size: 14px;
+    font-weight: lighter;
+    line-height: 1.4;
+    margin-bottom: 2rem;
+    opacity: 0.8;
 }
 
 .quest {
-  font-size: 24px;
-  color: #CD4A00;
-  line-height: 1.2;
-  /* Adjust line height to reduce space */
+    font-size: 24px;
+    color: var(--primary-color);
+    line-height: 1.3;
+    margin-bottom: 2rem;
+    font-style: italic;
 }
 
 .subquest {
-  font-weight: lighter;
-  line-height: 1.2;
-  /* Adjust line height to reduce space */
+    font-weight: lighter;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    max-width: 90%;
 }
 
 .resume-button {
-  display: inline-block;
-  /* Make the link behave like a button */
-  padding: 5px 20px;
-  /* Add padding */
-  margin-top: 20px;
-  /* Space above the button */
-  background-color: #CD4A00;
-  /* Button color */
-  color: white;
-  /* Text color */
-  text-decoration: none;
-  /* Remove underline */
-  border-radius: 10px;
-  /* Rounded corners */
-  font-weight: bold;
-  /* Bold text */
-  transition: background-color 0.5s, border 0.5s ease;
-  /* Extend background-color transition to 1s */
-  width: 150px;
-  /* Set a specific width */
-  text-align: center;
-  /* Center the text */
-  border: 1px solid #CD4A00;
-  /* Add a border on hover */
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    margin-top: 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius-md);
+    font-weight: var(--font-weight-bold);
+    transition: background-color var(--transition-slow), border var(--transition-slow);
+    text-align: left;
+    border: 1px solid var(--primary-color);
+    width: auto;
+    min-width: 100px;
+    max-width: 100px;
+    float: left;
+    clear: both;
 }
 
 .resume-button:hover {
-  background-color: white;
-  color: #CD4A00;
-  border: 1px solid #CD4A00;
-  /* Add a border on hover */
-  /* Darker shade on hover */
+    background-color: var(--primary-hover);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
 }
 
+/* Image Content */
 .image-content {
-  position: relative;
-  /* Ensure the section has a positioning context */
-  padding: 20px;
-  padding-top: 1vh;
-  z-index: 5;
-  /* Make sure it's above the highlight image */
+    position: relative;
+    padding: 20px;
+    padding-top: 1vh;
+    z-index: 5;
 }
 
 .image-content img {
-  width: 100%;
-  display: block;
-  /* Ensures the image is treated as a block element */
-  border-radius: 10px;
-  /* Optional: rounds the corners */
-  margin: auto;
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+    margin: auto;
 }
 
 .image-content iframe {
-  width: 100%;
-  display: block;
-  /* Ensures the image is treated as a block element */
-  border-radius: 10px;
-  /* Optional: rounds the corners */
-  margin: auto;
-  height: 95vh;
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+    margin: auto;
+    height: 95vh;
 }
 
-/* Back to Top Button Styling */
+/* Back to Top Button */
 #back-to-top-button {
-  display: none;
-  /* Hidden by default */
-  position: fixed;
-  bottom: 60px;
-  right: 30px;
-  z-index: 99;
-  font-size: 18px;
-  /* You can adjust the font size as needed */
-  border: none;
-  outline: none;
-  background-color: #CD4A00;
-  color: white;
-  cursor: pointer;
-  width: 30px;
-  /* Set width */
-  height: 30px;
-  /* Set height equal to width for circle */
-  border-radius: 50%;
-  /* Make it a circle */
-  transition: background-color 0.5s, border 0.5s ease;
-  border: 1px solid #CD4A00;
-  display: flex;
-  /* Use flexbox to center the arrow */
-  justify-content: center;
-  /* Center horizontally */
-  align-items: center;
-  /* Center vertically */
+    display: none;
+    position: fixed;
+    bottom: 60px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: background-color 0.5s, border 0.5s ease;
+    border: 1px solid var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
 
 #back-to-top-button:hover {
-  background-color: white;
-  color: #CD4A00;
-  border: 1px solid #CD4A00;
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
 }
 
+/* Scroll Down Animation */
 .scroll-down {
-  position: absolute;
-  left: 50%;
-  display: block;
-  width: 30px;
-  height: 30px;
-  border: 1px solid #CD4A00;
-  border-radius: 50%;
-  z-index: 99;
-  -webkit-animation: bounce 2s infinite 2s;
-  animation: bounce 2s infinite 2s;
-  -webkit-transition: all .2s ease-in;
-  transition: all .2s ease-in;
-  text-decoration: none;
-  text-align: center;
-  color: #CD4A00;
-}
-
-
-@keyframes bounce {
-
-  0%,
-  100%,
-  20%,
-  50%,
-  80% {
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
-  }
-
-  40% {
-    -webkit-transform: translateY(-10px);
-    -ms-transform: translateY(-10px);
-    transform: translateY(-10px);
-  }
-
-  60% {
-    -webkit-transform: translateY(-5px);
-    -ms-transform: translateY(-5px);
-    transform: translateY(-5px);
-  }
-}
-
-
-.hero-section {
-  align-items: center;
-  display: flex;
-  min-height: 100%;
-  justify-content: center;
-  margin-top: 2%;
-}
-
-.card-grid {
-  display: grid;
-  width: 90%;
-  gap: var(--spacing-l);
-}
-
-.card {
-  height: 90vh;
-  width: 100%;
-  list-style: none;
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--spacing-l);
-  text-decoration: none;
-  margin: 1%;
-  filter: brightness(1) saturate(1) contrast(1);
-  transform-origin: center;
-  transform: scale(1) translateZ(0);
-  transition: filter 200ms ease, transform 200ms ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.card__background {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  transition: transform 200ms ease, filter 200ms ease;
-  border-radius: var(--spacing-l);
-}
-
-.card:hover .card__background {
-  transform: scale(1.01) translateZ(0);
-}
-
-.card-grid:hover>.card:not(:hover) .card__background {
-  filter: brightness(0.9) saturate(0.5) contrast(1.2) blur(1px);
-}
-
-.hashtags {
-  position: absolute;
-  bottom: 1%;
-  left: 15%;
-  transform: scale(1);
-  color: #CD4A00;
-  font-size: 16px;
-  transition: color 200ms ease, transform 200ms ease;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
-  /* Adds a subtle shadow */
-}
-
-.card:hover .hashtags {
-  color: #ffffff;
-  /* Changes color on hover */
-  transform: scale(1.01);
-}
-
-
-/* Styles for desktop */
-@media (min-width: 768px) {
-  /* ... */
-}
-
-/* Styles for tablet */
-@media (min-width: 576px) and (max-width: 1024px) {
-
-  .name {
-    margin-top: 3dvh;
-  }
-
-  .highlight-image {
-    width: 75vw;
-  }
-
-  .social-icons {
-    width: 100%;
-    /* Full width on small screens */
-    display: flex;
-    /* Use flexbox */
-    align-items: center;
-    /* Center vertically */
-    text-align: center;
-    /* Center text horizontally */
-    justify-content: space-between;
-    /* Space items evenly */
-    padding-inline: 20vh;
-    z-index: 10;
-  }
-
-  .social-icon {
-    width: 9vw;
-    /* Responsive width */
-    height: 9vw;
-    z-index: 10;
-  }
-
-  .social-icons a {
-    z-index: 10;
-  }
-
-  .top-bar {
+    position: absolute;
+    left: 50%;
     display: block;
-  }
-
-  .header-name {
-    width: 100%;
-    /* Full width on small screens */
-    font-size: 3vw;
-    z-index: 10;
-    padding: 1vh;
-  }
-
-  .name {
-    display: flex;
-    /* Use flexbox */
-    justify-content: center;
-    /* Center horizontally */
-    align-items: center;
-    /* Center vertically */
-    text-align: center;
-    /* Center text horizontally */
-  }
-
-  .main-content {
-    display: block;
-    height: calc(80vh - 60px);
-    /* Adjust height to account for the header */
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: 40px;
-  }
-
-  .left-section,
-  .right-section {
-    width: 100%;
-    /* Full width on small screens */
-    padding: 0px;
-    /* Some padding */
-    text-align: center;
-  }
-
-  .profile-photo {
-    width: 100%;
-    /* Responsive size */
-    min-width: 300px;
-    max-width: 600px;
-    /* Set a maximum width for smaller profile photo */
-    height: auto;
-    /* Maintain aspect ratio */
-    transition: transform 0.3s ease;
-    /* Smooth transition for effects */
-  }
-
-  .quest {
-    font-size: 24px;
-    color: #CD4A00;
-    line-height: 1.2;
-    /* Adjust line height to reduce space */
-    margin-inline: 90px;
-  }
-  
-  .subquest {
-    font-weight: lighter;
-    line-height: 1.2;
-    /* Adjust line height to reduce space */
-  }
-  
-
-  .resume-button {
-    display: block;
-    /* Make the link behave like a button */
-    padding: 5px 5px;
-    width: 20%;
-    /* Set a specific width */
-    margin: 0 auto;  
-  }
-
-  .scroll-down {
-    display: block;
-    position: static;
-    margin: 0 auto; 
-    left: 0%;
-    width: 0px;
-    height: 0px;
-    border: 0px solid #CD4A00;
-    border-radius: 0%;
-    font-size: xx-large;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--primary-color);
+    border-radius: 50%;
     z-index: 99;
-    -webkit-animation: bounce 2s infinite 2s;
     animation: bounce 2s infinite 2s;
-    -webkit-transition: all .2s ease-in;
     transition: all .2s ease-in;
     text-decoration: none;
     text-align: center;
-    color: #CD4A00;
-  }
-
-  .image-content {
-    padding: 10px;
-    padding-top: 1dh;
-    z-index: 5;
-    /* Make sure it's above the highlight image */
-  }
-
-  .image-content iframe {
-    width: 100%;
-    display: block;
-    /* Ensures the image is treated as a block element */
-    border-radius: 10px;
-    /* Optional: rounds the corners */
-    margin: auto;
-    height: 50vh;
-  }
-
-  .hero-section {
-    display: block;
-    min-height: 100%;
-    align-items: center;
-    justify-content: center;
-    margin-top: 15vh;
-  }
-
-  .card-grid {
-    width: 100%;
-  }
-
-  .card {
-    display: block;
-    height: 40vh;
-    align-items: center;
-    justify-content: center;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-
-  .hashtags {
-    bottom: 1vh;
-    left: 10vw;
-    font-size: 1.5vh;
-  }
+    color: var(--primary-color);
 }
 
-/* Styles for mobile */
+@keyframes bounce {
+    0%, 100%, 20%, 50%, 80% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* Hero Section */
+.hero-section {
+    align-items: center;
+    display: flex;
+    min-height: 100%;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+/* Card Grid */
+.card-grid {
+    display: grid;
+    width: 90%;
+    gap: var(--spacing-l);
+}
+
+.card {
+    height: 90vh;
+    width: 100%;
+    list-style: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--spacing-l);
+    text-decoration: none;
+    margin: 1%;
+    filter: brightness(1) saturate(1) contrast(1);
+    transform-origin: center;
+    transform: scale(1) translateZ(0);
+    transition: filter 200ms ease, transform 200ms ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card__background {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: transform 200ms ease, filter 200ms ease;
+    border-radius: var(--spacing-l);
+}
+
+.card:hover .card__background {
+    transform: scale(1.005) translateZ(0);
+}
+
+.card-grid:hover > .card:not(:hover) .card__background {
+    filter: brightness(0.9) saturate(0.9) contrast(0.9) blur(0.3px);
+}
+
+.hashtags {
+    position: absolute;
+    bottom: 1%;
+    left: 15%;
+    transform: scale(1);
+    color: var(--primary-color);
+    font-size: 16px;
+    transition: color 200ms ease, transform 200ms ease;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+
+.card:hover .hashtags {
+    color: #ffffff;
+    transform: scale(1.01);
+}
+
+/* ==================== TABLET STYLES (≤1100px) ==================== */
+@media (max-width: 1100px) {
+    /* Hide custom pointer on touch devices */
+    #custom-pointer {
+        display: none !important;
+    }
+
+    /* Adjust highlight image */
+    .highlight-image {
+        width: 75vw;
+    }
+
+    /* Header layout changes - Two row centered layout */
+    .top-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        min-height: 100px;
+        padding: 1.5rem 2.5rem;
+        gap: 1rem;
+    }
+
+    .header-name {
+        width: 100%;
+        font-size: 4vw;
+        text-align: center;
+        margin-right: 0;
+        order: -1;
+    }
+
+    .header-name::after {
+        display: none;
+    }
+
+    /* Social icons - center layout in second row */
+    .social-icons {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        padding: 0.5rem 0;
+        margin-left: 0;
+    }
+
+    .social-icon {
+        width: 9vw;
+        height: 9vw;
+    }
+
+    /* Main content - stack layout */
+    .main-content {
+        flex-direction: column;
+        height: auto;
+        padding: 2rem;
+        gap: 2rem;
+    }
+
+    .left-section,
+    .right-section {
+        width: 100%;
+        padding: 1rem 0;
+        text-align: center;
+    }
+
+    .left-section {
+        order: -1;
+    }
+
+    /* Profile photo adjustments - even smaller for mobile with diffused glow shadow */
+    .profile-photo {
+        min-width: 200px;
+        max-width: 280px;
+    }
+
+    /* Typography adjustments */
+    .quest {
+        font-size: 24px;
+        line-height: 1.2;
+        margin-inline: 90px;
+    }
+
+    .subquest {
+        line-height: 1.2;
+        text-align: center;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Button adjustments - full width with perfect centering */
+    .resume-button {
+        display: block;
+        padding: 5px 15px;
+        width: 100%;
+        margin: 0.25rem auto 0;
+        float: none;
+        clear: none;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    /* Hide scroll animation */
+    .scroll-down {
+        display: none;
+    }
+
+    /* Image content adjustments */
+    .image-content {
+        padding: 10px;
+        padding-top: 1vh;
+    }
+
+    .image-content iframe {
+        height: 50vh;
+    }
+
+    /* Hero section adjustments */
+    .hero-section {
+        margin-top: 15vh;
+    }
+
+    /* Card adjustments - larger images and tighter spacing */
+    .card {
+        height: 55vh;
+        width: 85vw;
+        margin-left: calc(-42.5vw + 50%);
+        margin-right: calc(-42.5vw + 50%);
+        border-radius: 10px;
+    }
+
+    .card__background {
+        border-radius: 10px;
+    }
+
+    .hashtags {
+        bottom: 1vh;
+        left: 10vw;
+        font-size: 1.5vh;
+    }
+}
+
+/* ==================== MOBILE STYLES (≤575px) ==================== */
 @media (max-width: 575px) {
+    /* Adjust highlight image for mobile */
+    .highlight-image {
+        width: 100vw;
+    }
 
-  .highlight-image {
-    width: 100vw;
-  }
+    /* Header adjustments - Two row centered layout */
+    .top-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 120px;
+        padding: 1rem 2rem;
+        gap: 1rem;
+    }
 
-  .social-icons {
-    width: 100%;
-    /* Full width on small screens */
-    display: flex;
-    /* Use flexbox */
-    align-items: center;
-    /* Center vertically */
-    text-align: center;
-    /* Center text horizontally */
-    justify-content: space-between;
-    /* Space items evenly */
-    padding-inline: 10vh;
-    z-index: 10;
-  }
+    .header-name {
+        width: 100%;
+        font-size: 5vw;
+        text-align: center;
+        order: -1;
+    }
 
-  .social-icon {
-    width: 6vw;
-    /* Responsive width */
-    height: 6vw;
-    z-index: 10;
-  }
+    /* Social icons - wider gaps for mobile */
+    .social-icons {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        padding: 0.5rem 0;
+    }
 
-  .social-icons a {
-    z-index: 10;
-  }
+    .social-icon {
+        width: 6vw;
+        height: 6vw;
+    }
 
-  .top-bar {
-    display: block;
-  }
+    /* Main content - tighter spacing */
+    .main-content {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
 
-  .header-name {
-    width: 100%;
-    /* Full width on small screens */
-    font-size: 6vw;
-    z-index: 10;
-    padding: 1vh;
-  }
+    /* Button - full width with perfect centering */
+    .resume-button {
+        width: 100%;
+        padding: 5px 15px;
+        text-align: center;
+        margin: 0 auto;
+        float: none;
+        box-sizing: border-box;
+    }
 
-  .name {
-    display: flex;
-    /* Use flexbox */
-    justify-content: center;
-    /* Center horizontally */
-    align-items: center;
-    /* Center vertically */
-    text-align: center;
-    /* Center text horizontally */
-  }
+    /* Hide scroll elements */
+    .scroll-down {
+        display: none;
+    }
 
-  .main-content {
-    display: block;
-    height: calc(100vh - 60px);
-    /* Adjust height to account for the header */
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: 40px;
-  }
+    /* Hero section - no top margin */
+    .hero-section {
+        margin-top: 0;
+    }
 
-  .left-section,
-  .right-section {
-    width: 100%;
-    /* Full width on small screens */
-    padding: 0px;
-    /* Some padding */
-    text-align: center;
-  }
+    /* Card adjustments - edge-to-edge images without cropping */
+    .card {
+        height: auto;
+        min-height: 25vh;
+        align-items: stretch;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+        border-radius: 0;
+        position: relative;
+    }
 
-  .resume-button {
-    display: block;
-    /* Make the link behave like a button */
-    padding: 5px 20px;
-    width: 100%;
-    /* Set a specific width */
-  }
+    .card__background {
+        border-radius: 0;
+        object-fit: contain;
+        width: 100%;
+        height: auto;
+        min-height: 25vh;
+    }
 
-  .scroll-down {
-    display: none;
-    width: 0px;
-    height: 0px;
-    border: 0px solid #CD4A00;
-    font-size: 0%;
-  }
-
-  .image-content {
-    padding: 10px;
-    padding-top: 1vh;
-    z-index: 5;
-    /* Make sure it's above the highlight image */
-  }
-
-  .image-content iframe {
-    width: 100%;
-    display: block;
-    /* Ensures the image is treated as a block element */
-    border-radius: 10px;
-    /* Optional: rounds the corners */
-    margin: auto;
-    height: 50vh;
-  }
-
-  .hero-section {
-    display: block;
-    min-height: 100%;
-    align-items: center;
-    justify-content: center;
-    margin-top: 0vh;
-  }
-
-  .card-grid {
-    width: 100%;
-  }
-
-  .card {
-    display: block;
-    height: 25dvh;
-    align-items: center;
-    justify-content: center;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-
-  .hashtags {
-    bottom: 0vh;
-    left: 10vw;
-    font-size: 1vh;
-  }
+    /* Hashtags - smaller font */
+    .hashtags {
+        bottom: 0;
+        left: 10vw;
+        font-size: 1vh;
+    }
 }
+
+/* ==================== HIGH-RESOLUTION OVERRIDES ==================== */
+@media (min-width: 2000px) {
+    .header-name {
+        font-size: 0.6rem !important;
+    }
+
+    .profile-photo {
+        max-width: 320px !important;
+        max-height: 400px !important;
+    }
+}
+
+/* ==================== TOUCH DEVICE OPTIMIZATIONS ==================== */
+@media (max-width: 767px), (pointer: coarse) {
+    #custom-pointer {
+        display: none !important;
+    }
+
+    #profilePhoto {
+        filter: var(--shadow-md) !important;
+        transition: none !important;
+    }
+}
+
+/* ==================== END OF OPTIMIZED CSS FILE ==================== */
