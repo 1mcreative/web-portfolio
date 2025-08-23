@@ -97,12 +97,38 @@ body, html {
         left: 10px;
         opacity: 0;
         pointer-events: none;
+        z-index: 1000;
+        visibility: hidden;
     }
 
     .skip-link:focus {
         top: 15px;
         opacity: 1;
         pointer-events: auto;
+        visibility: visible;
+    }
+}
+
+/* Enhanced mobile compatibility for skip links */
+@media (max-width: 767px) {
+    .skip-link {
+        position: absolute !important;
+        top: -60px !important;
+        left: 10px !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        z-index: 1000 !important;
+    }
+
+    .skip-link:focus {
+        position: fixed !important;
+        top: 20px !important;
+        left: 20px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        z-index: 1000 !important;
     }
 }
 
@@ -118,9 +144,10 @@ body, html {
     border: 0 !important;
     opacity: 0 !important;
     pointer-events: none !important;
+    visibility: hidden !important;
 }
 
-/* Enhanced for mobile Safari */
+/* Enhanced for mobile Safari and all mobile browsers */
 @supports (-webkit-appearance: none) {
     .sr-only {
         position: fixed !important;
@@ -129,7 +156,66 @@ body, html {
         opacity: 0 !important;
         visibility: hidden !important;
         pointer-events: none !important;
+        z-index: -1 !important;
     }
+}
+
+/* Additional mobile compatibility fixes */
+@media (max-width: 767px) {
+    .sr-only {
+        position: absolute !important;
+        left: -10000px !important;
+        top: auto !important;
+        width: 1px !important;
+        height: 1px !important;
+        overflow: hidden !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        z-index: -1 !important;
+    }
+}
+
+/* Extra robust hiding for problematic mobile browsers */
+@media (max-width: 575px) {
+    .sr-only {
+        display: none !important;
+    }
+}
+
+/* Ultimate fallback for screen reader only content */
+.sr-only-text {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+}
+
+/* For headings that should be screen reader only */
+.sr-only-heading {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+    font-size: 0 !important;
 }
 
 /* ==================== LOADER ==================== */
