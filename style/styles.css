@@ -66,32 +66,70 @@ body, html {
 /* ==================== ACCESSIBILITY ==================== */
 .skip-link {
     position: absolute;
-    top: -40px;
+    top: -50px;
     left: 6px;
     background: #CD4A00;
     color: white;
-    padding: 8px;
+    padding: 8px 12px;
     text-decoration: none;
     z-index: 1000;
     border-radius: 4px;
     font-weight: 600;
-    transition: top 0.3s;
+    font-size: 14px;
+    transition: top 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    clip-path: inset(0 0 0 0);
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .skip-link:focus {
-    top: 6px;
+    top: 10px;
+    opacity: 1;
+    clip-path: inset(0);
+}
+
+/* Mobile Safari specific fixes */
+@supports (-webkit-appearance: none) {
+    .skip-link {
+        position: fixed;
+        top: -60px;
+        left: 10px;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .skip-link:focus {
+        top: 15px;
+        opacity: 1;
+        pointer-events: auto;
+    }
 }
 
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Enhanced for mobile Safari */
+@supports (-webkit-appearance: none) {
+    .sr-only {
+        position: fixed !important;
+        top: -9999px !important;
+        left: -9999px !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
 }
 
 /* ==================== LOADER ==================== */
@@ -589,7 +627,8 @@ body, html {
     .quest {
         font-size: 24px;
         line-height: 1.2;
-        margin-inline: 90px;
+        margin-inline: 20px;
+        padding: 0 10px;
     }
 
     .subquest {
@@ -598,6 +637,7 @@ body, html {
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
+        padding: 0 25px;
     }
 
     /* Button adjustments - full width with perfect centering */
@@ -705,6 +745,23 @@ body, html {
         margin: 0 auto;
         float: none;
         box-sizing: border-box;
+    }
+
+    /* Fix quest and subquest spacing for small mobile */
+    .quest {
+        font-size: 22px;
+        line-height: 1.2;
+        margin-inline: 15px;
+        padding: 0 10px;
+    }
+
+    .subquest {
+        line-height: 1.2;
+        text-align: center;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 20px;
     }
 
     /* Hide scroll elements */
