@@ -87,7 +87,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // Loader functionality (consolidated)
+let loaderInitialized = false;
+
 function initLoader() {
+   if (loaderInitialized) return;
+   loaderInitialized = true;
+
    try {
      const loaderWrapper = document.getElementById('loader');
      if (!loaderWrapper) {
@@ -95,12 +100,20 @@ function initLoader() {
        return;
      }
 
-     // Hide loader after 3 seconds (reduced from 5 seconds)
-     setTimeout(function () {
+     function hideLoader() {
        if (loaderWrapper && !loaderWrapper.classList.contains('hidden')) {
          loaderWrapper.classList.add('hidden');
        }
-     }, 3000);
+     }
+
+     if (document.readyState === 'complete') {
+       hideLoader();
+     } else {
+       window.addEventListener('load', hideLoader, { once: true });
+     }
+
+     // Fallback if assets are slow
+     setTimeout(hideLoader, 3000);
 
    } catch (error) {
      console.error('Error initializing loader:', error);
@@ -109,9 +122,6 @@ function initLoader() {
 
 // Initialize loader on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', initLoader);
-
-// Also initialize on window load as fallback
-window.addEventListener('load', initLoader);
 
 
 // Consolidated DOMContentLoaded event listener for all features
@@ -154,7 +164,7 @@ function initBackToTopButton() {
 
      function checkScrollPosition() {
        const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-       backToTopButton.style.display = scrollTop > 100 ? "block" : "none";
+       backToTopButton.classList.toggle('visible', scrollTop > 100);
      }
 
      // Throttle scroll events for better performance
@@ -224,8 +234,9 @@ function initSkipLink() {
      skipLink.addEventListener('click', function(e) {
        const target = document.getElementById('main-content');
        if (target) {
-         target.focus();
-         target.scrollIntoView();
+         e.preventDefault();
+         target.focus({ preventScroll: true });
+         target.scrollIntoView({ behavior: 'smooth' });
        }
      });
    } catch (error) {
