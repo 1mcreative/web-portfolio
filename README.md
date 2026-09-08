@@ -49,6 +49,10 @@ A professional portfolio website showcasing the UX/UI design work of Neha Paul, 
 │   └── styles.css            # Main stylesheet
 ├── script/
 │   └── script.js             # JavaScript functionality
+├── robots.txt                 # Crawler rules + sitemap pointer
+├── sitemap.xml                 # Full page listing for search engines
+├── CNAME                       # GitHub Pages custom domain (nehapaul.in)
+├── CLAUDE.md                   # Project goals & conventions for AI-assisted work
 └── README.md                 # This file
 ```
 
@@ -72,7 +76,7 @@ All project pages have been upgraded with:
 - Custom mouse pointer animations
 - Improved navigation consistency
 - Professional project introductions
-- Download functionality for resume
+- View-full-size link for the resume image
 - Video accessibility for project demos
 
 ## 🎨 Design Philosophy
@@ -112,6 +116,9 @@ The portfolio reflects Neha's design philosophy of creating experiences that are
 - Canonical URLs for SEO
 - Comprehensive keyword optimization
 
+### Crawling
+- `robots.txt` + `sitemap.xml` at the repo root, listing every page
+
 ## ♿ Accessibility Features
 
 - **Keyboard Navigation**: Full keyboard support
@@ -126,7 +133,7 @@ The portfolio reflects Neha's design philosophy of creating experiences that are
 - **Mobile**: ≤575px
 - **Tablet**: 576px - 1100px
 - **Desktop**: >1100px
-- **High-res**: ≥2000px
+- **Large screens**: ≥1400px
 
 ### Touch Interactions
 - Optimized button sizes (44px minimum)
@@ -156,11 +163,10 @@ The site is optimized for deployment on:
 ## 📈 Performance
 
 ### Optimization Features
-- **Lazy Loading**: Images load as needed
+- **Lazy Loading**: Images load as needed (except the above-the-fold hero photo)
 - **Minimized HTTP Requests**: Efficient resource loading
-- **Optimized Images**: WebP format support
-- **Caching**: Proper cache headers
-- **Compression**: Gzip enabled
+- **Deferred Scripts**: JS doesn't block initial page render
+- **Caching/Compression**: Handled by the hosting platform (GitHub Pages) — not configured at the repo level
 
 ## 🔧 Customization
 
