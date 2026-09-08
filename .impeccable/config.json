@@ -11,6 +11,15 @@
         ],
         "createdAt": "2026-09-08T13:41:39.619Z",
         "reason": "custom-pointer, highlight-image, and skip-link are decorative/utility elements meant to stay viewport-bound (overflow-x:clip on html/body was added specifically to prevent them causing horizontal scroll); site has no tooltip/menu/popover anywhere that this could clip"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "assets/css/styles.css"
+        ],
+        "createdAt": "2026-09-08T14:34:21.226Z",
+        "reason": "Same rationale as the prior stylesheet: body{overflow-x:clip} exists specifically to stop fixed/absolute utility elements (loader overlay, back-to-top button, skip-link) from causing horizontal scroll. None of them are tooltips/menus/popovers -- this site has none -- so there's nothing for the clip to wrongly cut off."
       }
     ]
   }
