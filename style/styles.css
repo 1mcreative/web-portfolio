@@ -524,15 +524,6 @@ img {
     margin: auto;
 }
 
-.image-content iframe {
-    width: 100%;
-    display: block;
-    border-radius: 10px;
-    margin: auto;
-    height: min(95vh, 720px);
-    min-height: 200px;
-}
-
 .video-wrapper {
     position: relative;
     width: 100%;
@@ -784,10 +775,6 @@ button:focus-visible,
 
     .image-content {
         padding: clamp(0.5rem, 2vw, 1rem);
-    }
-
-    .image-content iframe {
-        height: min(50vh, 480px);
     }
 
     .hero-section {
