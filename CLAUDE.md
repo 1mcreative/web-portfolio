@@ -1,0 +1,57 @@
+# web-portfolio — project goals
+
+Personal portfolio site for Neha Paul, an Experience Designer. Static HTML/CSS/JS,
+no build step, no framework. Canonical URLs point at `https://nehapaul.in/`.
+
+## Goals (in priority order)
+
+1. **Fully responsive, mobile-first and desktop-first.** The site has to look and
+   work correctly at every width, not just the two or three breakpoints someone
+   happened to test — small phones, tablets, in-between laptop widths, and large
+   desktop monitors all count. No horizontal scroll, no clipped/overflowing
+   content, touch targets ≥44×44px on anything tappable. When you change layout
+   or spacing CSS, verify in a real browser at several widths (not just reasoning
+   from the CSS) before calling it done — this codebase has had bugs (undefined
+   CSS variables, conflicting rules of equal specificity in different media
+   queries) that were invisible from reading the CSS alone and only showed up
+   when actually rendered.
+
+2. **Attractive enough to win client work.** This site's job is to make visitors
+   want to hire Neha. Visual polish, smooth interactions, and a professional feel
+   matter as much as correctness. The existing signature touches (the glowing
+   cursor/photo-proximity effect, the animated text loader) are intentional
+   brand personality — don't flatten them out in the name of "cleanup" without
+   asking first. If a real redesign or visual pass is wanted, treat it as its own
+   scoped piece of work, not a side effect of a bug-fix pass.
+
+3. **SEO: rank for both branded and role searches.** People should find this site
+   searching "Neha Paul", "Neha Paul UX", "Neha Paul Experience Designer", etc.,
+   *and* searching for the roles she works in — UX Designer, UI Designer,
+   Experience Designer/Architect, Product Designer, Interaction Designer.
+   Be realistic about this: on-page technical SEO (unique per-page titles/
+   descriptions, structured data, working canonical URLs, analytics on every
+   page, fast/clean-loading pages) improves the *conditions* for ranking, but
+   ranking first for a single generic word like "UX" or "Architect" alone is an
+   extremely competitive, long-term goal that on-page work can't win by itself —
+   it needs backlinks, content depth, and domain authority over time. Don't
+   overstate what a metadata pass accomplishes. Also: "architect" here means UX
+   Architect / Experience Architect (a real, adjacent design title) — Neha is
+   not a building architect; never add copy that implies otherwise.
+
+## Working conventions for this repo
+
+- **`main`** is the stable branch — documentation and settled work.
+- **The enhancement branch** (currently `2026-06-26-r71q`) is where in-progress
+  fixes, responsiveness work, and polish land first. Merge to `main` once
+  verified rather than committing unreviewed changes straight to `main`.
+- Before marking any layout/CSS change done, start a local server and check it
+  in a browser at mobile, tablet, and desktop widths at minimum — see goal 1.
+  `python3 -m http.server` from the repo root is enough; there's no build step.
+- Images are currently hotlinked from `raw.githubusercontent.com/1mcreative/static`.
+  That's a real fragility/performance risk for a production site (no CDN
+  guarantees, GitHub can rate-limit it) but migrating hosting is a real
+  architecture decision (where do assets live, repo size implications) — raise
+  it with the user rather than silently re-hosting everything.
+- The Google Analytics property (`G-MFQEMF55V1`) should be present on every
+  page, not just `index.html` — it's how SEO/traffic progress against goal 3
+  actually gets measured.
