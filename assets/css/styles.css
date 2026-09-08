@@ -189,16 +189,6 @@ p {
     height: 0.5em;
     border-radius: 50%;
     background: var(--cobalt);
-    animation: pulse 1.1s var(--ease-out-expo) infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(0.6); opacity: 0.5; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .loader-mark::after { animation: none; }
 }
 
 /* ==================== HEADER / NAV ==================== */
@@ -487,19 +477,21 @@ p {
 .work-entry-thumb {
     grid-column: 1 / -1;
     grid-row: 2;
+    display: grid;
+    grid-template-rows: 0fr;
     overflow: hidden;
-    max-height: 0;
     border-radius: var(--radius);
-    transition: max-height var(--dur-normal) var(--ease-out-expo);
+    transition: grid-template-rows var(--dur-normal) var(--ease-out-expo);
 }
 
 .work-entry a:hover .work-entry-thumb,
 .work-entry a:focus-visible .work-entry-thumb {
-    max-height: 420px;
+    grid-template-rows: 1fr;
 }
 
 .work-entry-thumb img {
     width: 100%;
+    min-height: 0;
     aspect-ratio: 16 / 9;
     object-fit: cover;
 }
@@ -636,7 +628,7 @@ p {
     font-weight: 700;
     letter-spacing: var(--tracking-tight);
     max-width: 22ch;
-    line-height: 1.15;
+    line-height: 1.35;
 }
 
 .about-grid {

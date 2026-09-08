@@ -20,6 +20,15 @@
         ],
         "createdAt": "2026-09-08T14:34:21.226Z",
         "reason": "Same rationale as the prior stylesheet: body{overflow-x:clip} exists specifically to stop fixed/absolute utility elements (loader overlay, back-to-top button, skip-link) from causing horizontal scroll. None of them are tooltips/menus/popovers -- this site has none -- so there's nothing for the clip to wrongly cut off."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "assets/css/styles.css"
+        ],
+        "createdAt": "2026-09-08T17:59:10.803Z",
+        "reason": "Verified against actual CSS, not assumed: .work-list/.work-entry declare no padding of their own, but the nested .work-entry a (the real text-bearing element) has padding:2rem 0 -- 32px, well above the 8-16px floor -- which is what actually renders; detector isn't tracing padding through to a descendant. .section/.section-ink padding is clamp(4rem,3rem+5vw,8rem) clamp(1.25rem,1rem+2vw,3rem) -- 64-128px/20-48px -- real and substantial; likely a clamp()/custom-property resolution limit in the static check. Confirmed comfortable spacing in live screenshots both cases."
       }
     ]
   }
