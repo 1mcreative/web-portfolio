@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "style/styles.css"
+        ],
+        "createdAt": "2026-09-08T13:41:39.619Z",
+        "reason": "custom-pointer, highlight-image, and skip-link are decorative/utility elements meant to stay viewport-bound (overflow-x:clip on html/body was added specifically to prevent them causing horizontal scroll); site has no tooltip/menu/popover anywhere that this could clip"
+      }
+    ]
+  }
+}
