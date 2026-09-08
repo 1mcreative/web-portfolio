@@ -3,7 +3,7 @@
     /* Color */
     --ink: #15140F;
     --ink-70: rgba(21, 20, 15, 0.7);
-    --ink-45: rgba(21, 20, 15, 0.45);
+    --ink-60: rgba(21, 20, 15, 0.6);
     --ink-12: rgba(21, 20, 15, 0.12);
     --ink-08: rgba(21, 20, 15, 0.08);
     --paper: #F5F1E7;
@@ -297,7 +297,7 @@ p {
     gap: var(--sp-2);
     font-weight: 700;
     text-decoration: underline;
-    text-decoration-color: var(--ink-45);
+    text-decoration-color: var(--ink-60);
     text-underline-offset: 4px;
     text-decoration-thickness: 1.5px;
 }
@@ -427,7 +427,7 @@ p {
 
 .work-entry-index {
     font-size: 1rem;
-    color: var(--ink-45);
+    color: var(--ink-60);
     font-variant-numeric: tabular-nums;
 }
 
@@ -447,7 +447,7 @@ p {
 
 .work-entry-tags span {
     font-size: var(--small-size);
-    color: var(--ink-45);
+    color: var(--ink-60);
 }
 
 .work-entry-tags span:not(:last-child)::after {
@@ -458,7 +458,7 @@ p {
 
 .work-entry-arrow {
     font-size: 1.5rem;
-    color: var(--ink-45);
+    color: var(--ink-60);
     transition: transform var(--dur-fast) var(--ease-out-expo), color var(--dur-fast) var(--ease-out-expo);
 }
 
@@ -535,7 +535,7 @@ p {
     border: 1.5px dashed var(--ink-12);
     border-radius: var(--radius);
     padding: var(--sp-8);
-    color: var(--ink-45);
+    color: var(--ink-60);
     font-size: 0.9375rem;
 }
 
@@ -555,7 +555,7 @@ p {
 
 .cs-breadcrumb {
     font-size: var(--small-size);
-    color: var(--ink-45);
+    color: var(--ink-60);
     text-decoration: none;
     font-weight: 700;
     display: inline-block;
@@ -592,7 +592,7 @@ p {
 
 .cs-meta dt {
     font-size: var(--small-size);
-    color: var(--ink-45);
+    color: var(--ink-60);
     margin-bottom: var(--sp-1);
 }
 
@@ -698,7 +698,7 @@ p {
     gap: var(--sp-6);
     flex-wrap: wrap;
     font-size: var(--small-size);
-    color: var(--ink-45);
+    color: var(--ink-60);
 }
 
 /* ==================== BACK TO TOP ==================== */
@@ -740,11 +740,14 @@ p {
         justify-content: center;
         gap: var(--sp-12);
         transform: translateY(-100%);
-        transition: transform var(--dur-normal) var(--ease-out-expo);
+        visibility: hidden;
+        transition: transform var(--dur-normal) var(--ease-out-expo), visibility 0s var(--dur-normal);
     }
 
     .primary-nav[data-open="true"] {
         transform: translateY(0);
+        visibility: visible;
+        transition: transform var(--dur-normal) var(--ease-out-expo);
     }
 
     .primary-nav a {
@@ -770,6 +773,10 @@ p {
 
     .work-entry-thumb {
         grid-column: 1 / -1;
+        /* No hover on touch devices — show the preview outright instead
+           of gating it behind an interaction that doesn't exist here. */
+        grid-template-rows: 1fr;
+        margin-top: var(--sp-4);
     }
 }
 
