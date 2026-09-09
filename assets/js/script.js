@@ -113,6 +113,94 @@ function initLazyLoading() {
   });
 }
 
+// Signature hero interaction: a network of points that connect into lines
+// near the cursor -- "scattered pieces resolving into something legible" as
+// a literal, playful echo of the hero copy. Desktop/mouse only (CSS hides
+// the canvas on touch/narrow viewports); respects prefers-reduced-motion.
+function initHeroNetwork() {
+  const canvas = document.getElementById('hero-network');
+  if (!canvas) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+
+  const ctx = canvas.getContext('2d');
+  const hero = canvas.closest('.hero');
+  let points = [];
+  let mouse = { x: -9999, y: -9999 };
+  let raf = null;
+
+  function resize() {
+    const rect = hero.getBoundingClientRect();
+    canvas.width = rect.width * devicePixelRatio;
+    canvas.height = rect.height * devicePixelRatio;
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+
+    const count = Math.round((rect.width * rect.height) / 18000);
+    points = Array.from({ length: count }, () => ({
+      x: Math.random() * rect.width,
+      y: Math.random() * rect.height,
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: (Math.random() - 0.5) * 0.15,
+    }));
+  }
+
+  function step() {
+    const rect = hero.getBoundingClientRect();
+    ctx.clearRect(0, 0, rect.width, rect.height);
+
+    points.forEach((p) => {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > rect.width) p.vx *= -1;
+      if (p.y < 0 || p.y > rect.height) p.vy *= -1;
+    });
+
+    for (let i = 0; i < points.length; i++) {
+      const a = points[i];
+      const distToMouse = Math.hypot(a.x - mouse.x, a.y - mouse.y);
+      const near = distToMouse < 160;
+
+      ctx.beginPath();
+      ctx.arc(a.x, a.y, near ? 2.2 : 1.4, 0, Math.PI * 2);
+      ctx.fillStyle = near ? 'rgba(43, 63, 224, 0.55)' : 'rgba(21, 20, 15, 0.15)';
+      ctx.fill();
+
+      if (!near) continue;
+
+      for (let j = i + 1; j < points.length; j++) {
+        const b = points[j];
+        const d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < 110) {
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(43, 63, 224, ${0.35 * (1 - d / 110)})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+
+    raf = requestAnimationFrame(step);
+  }
+
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  hero.addEventListener('mouseleave', () => {
+    mouse.x = -9999;
+    mouse.y = -9999;
+  });
+
+  window.addEventListener('resize', resize, { passive: true });
+  resize();
+  raf = requestAnimationFrame(step);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initLoader();
   initNavToggle();
@@ -120,4 +208,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initSkipLink();
   initWorkReveal();
   initLazyLoading();
+  initHeroNetwork();
 });
