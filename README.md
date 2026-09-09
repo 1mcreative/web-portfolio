@@ -10,20 +10,17 @@ This is a fresh redesign (structure + visual system rebuilt from scratch). Conte
 
 ## Project structure
 
-Every route is a folder with its own `index.html`, so URLs never show `.html`:
+The homepage is a single scrolling page (hero → work → about → resume/contact), navigated via anchor links. Each of the 6 real case studies also has its own dedicated page — kept separate from the single page for two reasons: individually indexable/shareable URLs for SEO, and room for a full write-up later without bloating the homepage. Every route is a folder with its own `index.html`, so URLs never show `.html`:
 
 ```
-├── index.html                        # Home
+├── index.html                        # Single-page site: hero, work, about, resume
 ├── work/
-│   ├── index.html                    # Work index (all 6 projects)
-│   ├── ibm/index.html
+│   ├── ibm/index.html                # Full case-study page per project
 │   ├── eq/index.html
 │   ├── chalo-chale/index.html
 │   ├── finance-ops/index.html
 │   ├── sustainable-banking/index.html
 │   └── wca/index.html
-├── about/index.html
-├── resume/index.html
 ├── assets/
 │   ├── css/styles.css                # Design tokens + all page styles
 │   └── js/script.js                  # Loader, nav, scroll-reveal, a11y behavior
@@ -40,7 +37,8 @@ Images (profile photo, project covers, resume, social icons) are hosted external
 
 - **Type**: Bricolage Grotesque (variable, via Google Fonts) for both display and body text, at different weights/optical sizes.
 - **Color**: warm paper (`#F5F1E7`) and ink (`#15140F`) base, one accent — cobalt blue (`#2B3FE0`) — used deliberately rather than scattered.
-- **Motion**: one signature moment — work-index entries reveal on scroll — plus standard hover/focus states. Respects `prefers-reduced-motion`.
+- **Motion**: project entries reveal on scroll; buttons and project images get a small playful rotate-on-hover; the loader pops in once on load. All of it respects `prefers-reduced-motion`.
+- A decorative blob accent near the hero for a bit of personality without relying on stock illustration.
 - Tokens live at the top of `assets/css/styles.css` as CSS custom properties (color, type scale, spacing scale).
 
 ## Accessibility

@@ -66,20 +66,21 @@
   <a href="/" class="brand">Neha Paul</a>
   <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
   <nav id="primary-nav" class="primary-nav" aria-label="Primary" data-open="false">
-    <a href="/work/">Work</a>
-    <a href="/about/">About</a>
-    <a href="/resume/">Resume</a>
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#resume">Resume</a>
   </nav>
 </header>
 
 <main id="main-content" tabindex="-1">
-  <section class="hero">
+  <section class="hero" style="position: relative; overflow: hidden;">
+    <div class="blob blob-spin" aria-hidden="true" style="width: 340px; height: 340px; top: -60px; right: -80px; opacity: 0.12;"></div>
     <p class="hero-role">Experience Designer</p>
     <h1 class="hero-statement">Design that makes the <em>complicated</em> feel obvious.</h1>
-    <p class="hero-sub">I work across enterprise software, fintech, and consumer products — turning dense, high-stakes systems into interfaces people actually trust.</p>
+    <p class="hero-sub">I work across enterprise software, fintech, and consumer products — turning dense, high-stakes systems into interfaces people actually trust (and maybe even enjoy).</p>
     <div class="hero-meta">
-      <a href="/work/" class="btn">See the work</a>
-      <a href="/resume/" class="text-link">Resume &amp; contact →</a>
+      <a href="#work" class="btn">See the work</a>
+      <a href="#resume" class="text-link">Resume &amp; contact →</a>
     </div>
     <div class="hero-photo">
       <img src="https://raw.githubusercontent.com/1mcreative/static/main/profile/profile-photo.png" alt="Portrait of Neha Paul" loading="eager" width="260" height="347">
@@ -87,84 +88,135 @@
     </div>
   </section>
 
-  <section class="section section-tight" aria-labelledby="work-heading">
-    <h2 id="work-heading">Selected work</h2>
-    <ol class="work-list">
-      <li class="work-entry">
-        <a href="/work/ibm/">
-          <span class="work-entry-index numeral">01</span>
-          <span>
-            <span class="work-entry-title">IBM</span>
-            <span class="work-entry-tags"><span>Enterprise design</span><span>Design systems</span></span>
-          </span>
-          <span class="work-entry-arrow" aria-hidden="true">→</span>
-          <span class="work-entry-thumb"><img src="https://raw.githubusercontent.com/1mcreative/static/main/project/cover/ibm.png" alt="" loading="lazy"></span>
-        </a>
-      </li>
-      <li class="work-entry">
-        <a href="/work/eq/">
-          <span class="work-entry-index numeral">02</span>
-          <span>
-            <span class="work-entry-title">EQ</span>
-            <span class="work-entry-tags"><span>Emotional intelligence platform</span><span>UX/UI</span></span>
-          </span>
-          <span class="work-entry-arrow" aria-hidden="true">→</span>
-          <span class="work-entry-thumb"><img src="https://raw.githubusercontent.com/1mcreative/static/main/project/cover/eq.png" alt="" loading="lazy"></span>
-        </a>
-      </li>
-      <li class="work-entry">
-        <a href="/work/chalo-chale/">
-          <span class="work-entry-index numeral">03</span>
-          <span>
-            <span class="work-entry-title">Chalo Chale</span>
-            <span class="work-entry-tags"><span>Travel app</span><span>Mobile design</span></span>
-          </span>
-          <span class="work-entry-arrow" aria-hidden="true">→</span>
-          <span class="work-entry-thumb"><img src="https://raw.githubusercontent.com/1mcreative/static/main/project/cover/01.png" alt="" loading="lazy"></span>
-        </a>
-      </li>
-      <li class="work-entry">
-        <a href="/work/finance-ops/">
-          <span class="work-entry-index numeral">04</span>
-          <span>
-            <span class="work-entry-title">Finance Ops</span>
-            <span class="work-entry-tags"><span>Financial platform</span><span>Internship</span></span>
-          </span>
-          <span class="work-entry-arrow" aria-hidden="true">→</span>
-          <span class="work-entry-thumb"><img src="https://raw.githubusercontent.com/1mcreative/static/main/project/cover/02.png" alt="" loading="lazy"></span>
-        </a>
-      </li>
-      <li class="work-entry">
-        <a href="/work/sustainable-banking/">
-          <span class="work-entry-index numeral">05</span>
-          <span>
-            <span class="work-entry-title">Sustainable Banking</span>
-            <span class="work-entry-tags"><span>Green finance</span><span>ESG</span></span>
-          </span>
-          <span class="work-entry-arrow" aria-hidden="true">→</span>
-          <span class="work-entry-thumb"><img src="https://raw.githubusercontent.com/1mcreative/static/main/project/cover/03.png" alt="" loading="lazy"></span>
-        </a>
-      </li>
-      <li class="work-entry">
-        <a href="/work/wca/">
-          <span class="work-entry-index numeral">06</span>
-          <span>
-            <span class="work-entry-title">WCA</span>
-            <span class="work-entry-tags"><span>Enterprise design</span></span>
-          </span>
-          <span class="work-entry-arrow" aria-hidden="true">→</span>
-          <span class="work-entry-thumb"><img src="https://raw.githubusercontent.com/1mcreative/static/main/project/wca/01.png" alt="" loading="lazy"></span>
-        </a>
-      </li>
-    </ol>
+  <section class="section section-tight" id="work" aria-labelledby="work-heading">
+    <h2 id="work-heading">Work</h2>
+    <p class="hero-sub" style="margin-top: var(--sp-4);">Six projects across enterprise software, fintech, and travel. Full write-ups are being migrated over one at a time — each one below has a real project, a real summary, and a link through to the page that'll hold the full story as it's written.</p>
+
+    <div class="project-reveal-list">
+      <article class="project-reveal">
+        <div class="project-reveal-media">
+          <img src="https://raw.githubusercontent.com/1mcreative/static/main/project/cover/ibm.png" alt="IBM project cover" loading="lazy">
+        </div>
+        <div>
+          <p class="project-reveal-index numeral">01</p>
+          <h3 class="project-reveal-title">IBM</h3>
+          <p class="project-reveal-summary">Transforming experiences in the watsonx Coding Assistant — enterprise UX/UI work focused on making a complex, AI-driven developer tool feel approachable.</p>
+          <div class="project-reveal-tags"><span>Enterprise design</span><span>Design systems</span><span>watsonx Coding Assistant</span></div>
+          <a href="/work/ibm/" class="text-link project-reveal-link">Full case study →</a>
+        </div>
+      </article>
+
+      <article class="project-reveal">
+        <div class="project-reveal-media">
+          <img src="https://raw.githubusercontent.com/1mcreative/static/main/project/cover/eq.png" alt="EQ project cover" loading="lazy">
+        </div>
+        <div>
+          <p class="project-reveal-index numeral">02</p>
+          <h3 class="project-reveal-title">EQ</h3>
+          <p class="project-reveal-summary">A wellness platform designed around emotional intelligence — helping people understand and work with their emotions, not just track them.</p>
+          <div class="project-reveal-tags"><span>Emotional intelligence platform</span><span>Wellness app</span></div>
+          <a href="/work/eq/" class="text-link project-reveal-link">Full case study →</a>
+        </div>
+      </article>
+
+      <article class="project-reveal">
+        <div class="project-reveal-media">
+          <img src="https://raw.githubusercontent.com/1mcreative/static/main/project/cover/01.png" alt="Chalo Chale project cover" loading="lazy">
+        </div>
+        <div>
+          <p class="project-reveal-index numeral">03</p>
+          <h3 class="project-reveal-title">Chalo Chale</h3>
+          <p class="project-reveal-summary">A mobile travel app designed around how people actually plan and book trips — from search through payment.</p>
+          <div class="project-reveal-tags"><span>Travel app</span><span>Mobile design</span></div>
+          <a href="/work/chalo-chale/" class="text-link project-reveal-link">Full case study →</a>
+        </div>
+      </article>
+
+      <article class="project-reveal">
+        <div class="project-reveal-media">
+          <img src="https://raw.githubusercontent.com/1mcreative/static/main/project/cover/02.png" alt="Finance Ops project cover" loading="lazy">
+        </div>
+        <div>
+          <p class="project-reveal-index numeral">04</p>
+          <h3 class="project-reveal-title">Finance Ops</h3>
+          <p class="project-reveal-summary">An internship project designing for a financial operations platform — untangling dense workflows for the people who run them daily.</p>
+          <div class="project-reveal-tags"><span>Financial platform</span><span>Internship</span></div>
+          <a href="/work/finance-ops/" class="text-link project-reveal-link">Full case study →</a>
+        </div>
+      </article>
+
+      <article class="project-reveal">
+        <div class="project-reveal-media">
+          <img src="https://raw.githubusercontent.com/1mcreative/static/main/project/cover/03.png" alt="Sustainable Banking Solutions project cover" loading="lazy">
+        </div>
+        <div>
+          <p class="project-reveal-index numeral">05</p>
+          <h3 class="project-reveal-title">Sustainable Banking</h3>
+          <p class="project-reveal-summary">A concept for eco-conscious banking — making a customer's environmental impact as visible and actionable as their balance.</p>
+          <div class="project-reveal-tags"><span>Green finance</span><span>ESG</span></div>
+          <a href="/work/sustainable-banking/" class="text-link project-reveal-link">Full case study →</a>
+        </div>
+      </article>
+
+      <article class="project-reveal">
+        <div class="project-reveal-media">
+          <img src="https://raw.githubusercontent.com/1mcreative/static/main/project/wca/01.png" alt="WCA project cover" loading="lazy">
+        </div>
+        <div>
+          <p class="project-reveal-index numeral">06</p>
+          <h3 class="project-reveal-title">WCA</h3>
+          <p class="project-reveal-summary">Enterprise experience design work spanning a large surface area of screens and flows.</p>
+          <div class="project-reveal-tags"><span>Enterprise design</span></div>
+          <a href="/work/wca/" class="text-link project-reveal-link">Full case study →</a>
+        </div>
+      </article>
+    </div>
   </section>
 
-  <section class="section section-ink" aria-labelledby="quest-heading">
-    <h2 id="quest-heading" class="sr-only">Mission</h2>
-    <blockquote class="about-lede" style="max-width: 24ch; font-size: var(--h1-size);">The quest to make the ordinary extraordinary — and the impossible, possible.</blockquote>
-    <p style="margin-top: var(--sp-8); max-width: 60ch; color: var(--paper-70); font-size: 1.125rem;">I believe in crafting experiences that are easy to use, that one wonders how they ever lived without. A dash of creativity, a pinch of curiosity, and a whole lot of heart.</p>
-    <div style="margin-top: var(--sp-8);">
-      <a href="/about/" class="text-link">More about me →</a>
+  <section class="section" id="about" aria-labelledby="about-heading">
+    <h2 id="about-heading" class="sr-only">About</h2>
+    <div class="about-grid">
+      <img src="https://raw.githubusercontent.com/1mcreative/static/main/profile/profile-photo.png" alt="Portrait of Neha Paul" loading="lazy">
+      <div>
+        <p class="about-lede">The quest to make the ordinary extraordinary — and the impossible, possible.</p>
+        <p style="margin-top: var(--sp-6); color: var(--ink-70); font-size: 1.0625rem;">I'm Neha Paul, an Experience Designer currently pursuing a Master of Design in Experience Design at NIFT Bangalore. Before that, I spent four years designing workspace and enterprise experiences for teams at Microsoft, ServiceNow, and Amazon as part of DSP Design Associates.</p>
+        <p style="margin-top: var(--sp-4); color: var(--ink-70); font-size: 1.0625rem;">I believe in crafting experiences that are easy to use — the kind that make people wonder how they ever lived without them. A dash of creativity, a pinch of curiosity, and a whole lot of heart.</p>
+        <div class="placeholder" style="margin-top: var(--sp-8);">
+          <strong>More to add here</strong>
+          This is a placeholder for a fuller bio — background, design philosophy, and specifics beyond what's confirmed above. Fill in when ready; nothing here should be taken as final copy.
+        </div>
+        <ul style="margin-top: var(--sp-8); display:flex; flex-wrap:wrap; gap: var(--sp-3); list-style:none;">
+          <li class="btn btn-ghost" style="cursor:default;">User Research</li>
+          <li class="btn btn-ghost" style="cursor:default;">Interaction Design</li>
+          <li class="btn btn-ghost" style="cursor:default;">Design Systems</li>
+          <li class="btn btn-ghost" style="cursor:default;">Prototyping</li>
+          <li class="btn btn-ghost" style="cursor:default;">Information Architecture</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dim" id="resume" aria-labelledby="resume-heading">
+    <h2 id="resume-heading" style="font-size: var(--h1-size); font-weight: 800; letter-spacing: var(--tracking-tight);">Resume &amp; contact</h2>
+    <div class="contact-grid" style="margin-top: var(--sp-12);">
+      <div>
+        <img src="https://raw.githubusercontent.com/1mcreative/static/main/resume/resume.png" alt="Neha Paul's resume" loading="lazy" style="border-radius: var(--radius); border: 1px solid var(--ink-12);">
+        <a href="https://raw.githubusercontent.com/1mcreative/static/main/resume/resume.png" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: var(--sp-6);">View full size ↗</a>
+      </div>
+      <div>
+        <h3 style="margin-bottom: var(--sp-4);">Get in touch</h3>
+        <ul class="contact-list">
+          <li><a href="https://www.linkedin.com/in/neha-paul-b95605157/">LinkedIn <span aria-hidden="true">↗</span></a></li>
+          <li><a href="https://www.behance.net/nehapaul1610">Behance <span aria-hidden="true">↗</span></a></li>
+          <li><a href="https://medium.com/@nehapaul1610">Medium <span aria-hidden="true">↗</span></a></li>
+          <li><a href="https://www.instagram.com/amibhalaasi">Instagram <span aria-hidden="true">↗</span></a></li>
+          <li><span class="placeholder-row"><span style="color: var(--ink-60); font-weight:400;">Email — add address</span></span></li>
+        </ul>
+        <div class="placeholder" style="margin-top: var(--sp-8);">
+          <strong>No public email yet</strong>
+          Add a contact email here when ready — until then, LinkedIn is the fastest real way to reach out.
+        </div>
+      </div>
     </div>
   </section>
 </main>

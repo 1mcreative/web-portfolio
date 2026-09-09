@@ -74,9 +74,9 @@ function initSkipLink() {
   });
 }
 
-// Signature motion: work-index entries reveal on scroll into view
+// Signature motion: work-index / project-reveal entries animate in on scroll
 function initWorkReveal() {
-  const entries = document.querySelectorAll('.work-entry');
+  const entries = document.querySelectorAll('.work-entry, .project-reveal');
   if (!entries.length) return;
 
   if (!('IntersectionObserver' in window)) {
