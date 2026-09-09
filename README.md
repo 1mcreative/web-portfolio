@@ -1,205 +1,72 @@
-# Neha Paul - Experience Designer Portfolio
+# Neha Paul — Experience Designer Portfolio
 
-![Portfolio Preview](https://raw.githubusercontent.com/1mcreative/static/main/project/profile/profile-photo.png)
+Personal portfolio for Neha Paul, an Experience Designer. Static HTML/CSS/JS, no framework or build step, deployed via GitHub Pages at [nehapaul.in](https://nehapaul.in/).
 
-## 🌟 Overview
+See [CLAUDE.md](CLAUDE.md) for the standing goals this project works toward, and [PRODUCT.md](PRODUCT.md) for the fuller product/audience context behind the current design.
 
-A professional portfolio website showcasing the UX/UI design work of Neha Paul, an Experience Designer specializing in creating extraordinary user experiences. This portfolio demonstrates enterprise-level design solutions across multiple industries including travel, finance, healthcare, and sustainability.
+## Status
 
-## 🎯 Key Features
+This is a fresh redesign (structure + visual system rebuilt from scratch). Content is intentionally partial right now: real project names, cover images, bio, and social links are in place; full case-study write-ups are placeholders, clearly labeled as such on each project page, being filled in incrementally.
 
-### ✨ **Professional Design**
-- Clean, modern design with consistent branding
-- Responsive layout optimized for all devices
-- Smooth animations and interactions
-- Professional typography using Poppins font
+## Project structure
 
-### 🔍 **SEO Optimized**
-- Complete SEO implementation with structured data
-- Open Graph and Twitter Card support
-- Canonical URLs and proper meta tags
-- Search engine friendly architecture
-
-### ♿ **Accessibility Compliant**
-- WCAG 2.1 AA compliance
-- Skip links for keyboard navigation
-- Comprehensive ARIA labels
-- Screen reader optimized
-- Semantic HTML structure
-
-### 📱 **Responsive Design**
-- Mobile-first approach
-- Tablet and desktop optimizations
-- Touch-friendly interactions
-- Cross-browser compatibility
-
-## 📁 Project Structure
+The homepage is a single scrolling page (hero → work → about → resume/contact), navigated via anchor links. Each of the 6 real case studies also has its own dedicated page — kept separate from the single page for two reasons: individually indexable/shareable URLs for SEO, and room for a full write-up later without bloating the homepage. Every route is a folder with its own `index.html`, so URLs never show `.html`:
 
 ```
-├── index.html                 # Main portfolio page
-├── page/                      # Project case studies
-│   ├── ibm.html              # IBM Enterprise Design
-│   ├── chalo_chale.html      # Travel App Design (20 images)
-│   ├── eq.html               # Emotional Intelligence Platform
-│   ├── internship_at_finance_ops.html # Finance Operations (21 images)
-│   ├── sustainable_banking_solutions.html # Green Banking + Video
-│   ├── wca.html              # Enterprise Design (76 images)
-│   └── resume.html           # Professional Resume
-├── style/
-│   └── styles.css            # Main stylesheet
-├── script/
-│   └── script.js             # JavaScript functionality
-├── robots.txt                 # Crawler rules + sitemap pointer
-├── sitemap.xml                 # Full page listing for search engines
-├── CNAME                       # GitHub Pages custom domain (nehapaul.in)
-├── CLAUDE.md                   # Project goals & conventions for AI-assisted work
-└── README.md                 # This file
+├── index.html                        # Single-page site: hero, work, about, resume
+├── work/
+│   ├── ibm/index.html                # Full case-study page per project
+│   ├── eq/index.html
+│   ├── chalo-chale/index.html
+│   ├── finance-ops/index.html
+│   ├── sustainable-banking/index.html
+│   └── wca/index.html
+├── assets/
+│   ├── css/styles.css                # Design tokens + all page styles
+│   └── js/script.js                  # Loader, nav, scroll-reveal, a11y behavior
+├── robots.txt
+├── sitemap.xml
+├── CNAME                              # GitHub Pages custom domain
+├── PRODUCT.md
+└── CLAUDE.md
 ```
 
-## 🚀 Recent Improvements
+Images (profile photo, project covers, resume, social icons) are hosted externally at `raw.githubusercontent.com/1mcreative/static` — a known fragility (no CDN guarantees), tracked in `CLAUDE.md` rather than fixed here.
 
-### ✅ **Complete Project Page Transformation**
-All project pages have been upgraded with:
+## Design system
 
-- **SEO Excellence**: Specific titles, descriptions, and structured data
-- **Professional Structure**: Hero sections with compelling descriptions
-- **Accessibility**: Skip links, ARIA labels, semantic HTML
-- **User Experience**: Scroll animations, loading optimizations
-- **Content Quality**: Descriptive alt text, proper headings
+- **Type**: Bricolage Grotesque (variable, via Google Fonts) for both display and body text, at different weights/optical sizes.
+- **Color**: warm paper (`#F5F1E7`) and ink (`#15140F`) base, one accent — cobalt blue (`#2B3FE0`) — used deliberately rather than scattered.
+- **Motion**: project entries reveal on scroll; buttons and project images get a small playful rotate-on-hover; the loader pops in once on load. All of it respects `prefers-reduced-motion`.
+- A decorative blob accent near the hero for a bit of personality without relying on stock illustration.
+- Tokens live at the top of `assets/css/styles.css` as CSS custom properties (color, type scale, spacing scale).
 
-### ✅ **Repository Management**
-- Added comprehensive `.gitignore` file
-- Organized file structure
-- Optimized for version control
+## Accessibility
 
-### ✅ **Enhanced Features**
-- Custom mouse pointer animations
-- Improved navigation consistency
-- Professional project introductions
-- View-full-size link for the resume image
-- Video accessibility for project demos
+- Skip-to-content link that actually moves focus (`tabindex="-1"` on `#main-content`, verified — this exact bug existed and was fixed in the previous design)
+- Visible `:focus-visible` outlines, 44px minimum touch targets, semantic HTML/ARIA landmarks
+- `prefers-reduced-motion` support throughout
 
-## 🎨 Design Philosophy
+## SEO
 
-> "The quest to make the ordinary, extraordinary - and the impossible, possible!"
+- Unique title/description/canonical/Open Graph per page
+- JSON-LD structured data (`Person` on home, `CreativeWork` per case study)
+- `robots.txt` + `sitemap.xml` listing every real route
+- Google Analytics (`gtag`, `G-MFQEMF55V1`) on every page
 
-The portfolio reflects Neha's design philosophy of creating experiences that are:
-- **Intuitive**: Easy to understand and use
-- **Delightful**: Bring joy and satisfaction
-- **Meaningful**: Solve real user problems
-- **Professional**: Enterprise-grade quality
+## Local development
 
-## 🛠️ Technical Stack
+No build step — just serve the directory:
 
-- **HTML5**: Semantic markup and accessibility
-- **CSS3**: Modern layouts with Flexbox/Grid
-- **JavaScript**: Interactive elements and animations
-- **Google Fonts**: Poppins typography
-- **Schema.org**: Structured data for SEO
-
-## 📊 SEO Features
-
-### Structured Data
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Neha Paul",
-  "jobTitle": "Experience Designer",
-  "knowsAbout": ["UX Design", "UI Design", "Interaction Design"]
-}
-```
-
-### Meta Tags
-- Open Graph for social sharing
-- Twitter Cards for rich previews
-- Canonical URLs for SEO
-- Comprehensive keyword optimization
-
-### Crawling
-- `robots.txt` + `sitemap.xml` at the repo root, listing every page
-
-## ♿ Accessibility Features
-
-- **Keyboard Navigation**: Full keyboard support
-- **Screen Readers**: Optimized for assistive technologies
-- **Color Contrast**: WCAG AA compliance
-- **Focus Management**: Clear focus indicators
-- **Skip Links**: Quick navigation for screen readers
-
-## 📱 Mobile Optimization
-
-### Responsive Breakpoints
-- **Mobile**: ≤575px
-- **Tablet**: 576px - 1100px
-- **Desktop**: >1100px
-- **Large screens**: ≥1400px
-
-### Touch Interactions
-- Optimized button sizes (44px minimum)
-- Swipe-friendly galleries
-- Touch feedback animations
-- Mobile-specific layouts
-
-## 🚀 Deployment
-
-### Local Development
 ```bash
-# Clone the repository
-git clone [repository-url]
-cd [project-directory]
-
-# Open in browser
-open index.html
+python3 -m http.server 4173
 ```
 
-### Web Hosting
-The site is optimized for deployment on:
-- GitHub Pages
-- Netlify
-- Vercel
-- Any static hosting service
+Then open `http://localhost:4173`. GitHub Pages needs the folder+`index.html` structure above to serve clean URLs; a plain local file server (`open index.html`) won't resolve `/work/` the same way a real server does, so use the command above rather than opening files directly.
 
-## 📈 Performance
+## Contact
 
-### Optimization Features
-- **Lazy Loading**: Images load as needed (except the above-the-fold hero photo)
-- **Minimized HTTP Requests**: Efficient resource loading
-- **Deferred Scripts**: JS doesn't block initial page render
-- **Caching/Compression**: Handled by the hosting platform (GitHub Pages) — not configured at the repo level
-
-## 🔧 Customization
-
-### Colors
-```css
-:root {
-  --primary-color: #CD4A00;
-  --text-color: #000000;
-  --background-color: #ffffff;
-}
-```
-
-### Typography
-- Primary Font: Poppins (300, 400, 500, 600)
-- Responsive scaling
-- Optimized line heights
-
-## 📞 Contact & Social
-
-- **Portfolio**: [nehapaul.in](https://nehapaul.in/)
-- **LinkedIn**: [Neha Paul](https://www.linkedin.com/in/neha-paul-b95605157/)
-- **Behance**: [Neha Paul](https://www.behance.net/nehapaul1610)
-- **Medium**: [@nehapaul1610](https://medium.com/@nehapaul1610)
-- **Instagram**: [@amibhalaasi](https://www.instagram.com/amibhalaasi)
-
-## 📄 License
-
-This project is part of Neha Paul's professional portfolio. All design work and case studies are protected under copyright.
-
-## 🙏 Acknowledgments
-
-Special thanks to the mentors, clients, and users who contributed to the development of these design projects and the continuous improvement of this portfolio.
-
----
-
-**Built with ❤️ by Neha Paul** | *Experience Designer & UX/UI Enthusiast*
+- [LinkedIn](https://www.linkedin.com/in/neha-paul-b95605157/)
+- [Behance](https://www.behance.net/nehapaul1610)
+- [Medium](https://medium.com/@nehapaul1610)
+- [Instagram](https://www.instagram.com/amibhalaasi)

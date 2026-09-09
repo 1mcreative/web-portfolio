@@ -6,38 +6,33 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://nehapaul.in/page/ibm.html</loc>
+    <loc>https://nehapaul.in/work/ibm/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nehapaul.in/page/eq.html</loc>
+    <loc>https://nehapaul.in/work/eq/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nehapaul.in/page/chalo_chale.html</loc>
+    <loc>https://nehapaul.in/work/chalo-chale/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nehapaul.in/page/internship_at_finance_ops.html</loc>
+    <loc>https://nehapaul.in/work/finance-ops/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nehapaul.in/page/sustainable_banking_solutions.html</loc>
+    <loc>https://nehapaul.in/work/sustainable-banking/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nehapaul.in/page/wca.html</loc>
+    <loc>https://nehapaul.in/work/wca/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nehapaul.in/page/resume.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
 </urlset>

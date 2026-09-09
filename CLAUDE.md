@@ -18,11 +18,15 @@ no build step, no framework. Canonical URLs point at `https://nehapaul.in/`.
 
 2. **Attractive enough to win client work.** This site's job is to make visitors
    want to hire Neha. Visual polish, smooth interactions, and a professional feel
-   matter as much as correctness. The existing signature touches (the glowing
-   cursor/photo-proximity effect, the animated text loader) are intentional
-   brand personality — don't flatten them out in the name of "cleanup" without
-   asking first. If a real redesign or visual pass is wanted, treat it as its own
-   scoped piece of work, not a side effect of a bug-fix pass.
+   matter as much as correctness. As of the 2026-09 redesign, the visual identity
+   is: warm paper (`#F5F1E7`) / ink (`#15140F`) base, one cobalt accent
+   (`#2B3FE0`), Bricolage Grotesque throughout, numbered work-index entries with
+   a scroll-reveal as the one signature motion moment. The prior identity
+   (orange `#CD4A00`, Poppins, the glowing cursor effect, "@inmydreamyland"
+   handle) was explicitly retired, not evolved — don't resurrect it by default.
+   Treat this current identity the same way: it's intentional, not a draft: if a
+   real redesign or visual pass is wanted, treat it as its own scoped piece of
+   work, not a side effect of a bug-fix pass.
 
 3. **SEO: rank for both branded and role searches.** People should find this site
    searching "Neha Paul", "Neha Paul UX", "Neha Paul Experience Designer", etc.,
@@ -41,9 +45,13 @@ no build step, no framework. Canonical URLs point at `https://nehapaul.in/`.
 ## Working conventions for this repo
 
 - **`main`** is the stable branch — documentation and settled work.
-- **The enhancement branch** (currently `2026-06-26-r71q`) is where in-progress
-  fixes, responsiveness work, and polish land first. Merge to `main` once
-  verified rather than committing unreviewed changes straight to `main`.
+- In-progress work lands on a feature branch first (e.g. the 2026-09 redesign
+  branch `redesign-simki-inspired`) and merges to `main` once verified, rather
+  than committing unreviewed changes straight to `main`.
+- Every route is a folder + `index.html` (`/work/ibm/index.html`, not
+  `/work/ibm.html`) so URLs never show `.html` — GitHub Pages needs that
+  pattern to hide the extension, since it can't do server-side redirects.
+  Keep this when adding new pages.
 - Before marking any layout/CSS change done, start a local server and check it
   in a browser at mobile, tablet, and desktop widths at minimum — see goal 1.
   `python3 -m http.server` from the repo root is enough; there's no build step.
