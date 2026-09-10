@@ -55,11 +55,15 @@ no build step, no framework. Canonical URLs point at `https://nehapaul.in/`.
 - Before marking any layout/CSS change done, start a local server and check it
   in a browser at mobile, tablet, and desktop widths at minimum — see goal 1.
   `python3 -m http.server` from the repo root is enough; there's no build step.
-- Images are currently hotlinked from `raw.githubusercontent.com/1mcreative/static`.
-  That's a real fragility/performance risk for a production site (no CDN
-  guarantees, GitHub can rate-limit it) but migrating hosting is a real
-  architecture decision (where do assets live, repo size implications) — raise
-  it with the user rather than silently re-hosting everything.
+- Images are hotlinked from `raw.githubusercontent.com/1mcreative/static` —
+  **confirmed deliberate** (2026-09-10): Bhavesh maintains a separate
+  `1mcreative/static` repo for all project/profile photos specifically to
+  keep `web-portfolio` lighter, not an oversight to fix. Keep using that
+  pattern for new images (e.g. `project/<name>/01.png`, `project/cover/
+  <name>.png`) rather than committing binary assets into this repo. The
+  fragility risk (no CDN guarantees, GitHub can rate-limit raw.githubusercontent.com)
+  is accepted, known, and intentional — don't silently "fix" it by moving
+  images into this repo either.
 - The Google Analytics property (`G-MFQEMF55V1`) should be present on every
   page, not just `index.html` — it's how SEO/traffic progress against goal 3
   actually gets measured.
