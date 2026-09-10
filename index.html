@@ -69,6 +69,7 @@
     </head>
     <body>
         <x-dc>
+            <a href="#hero" class="skip-link">Skip to main content</a>
             <helmet>
                 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2315171e'/%3E%3Ctext x='30' y='41' font-family='Archivo, Arial Black, sans-serif' font-size='25' font-weight='900' letter-spacing='-1' text-anchor='middle' fill='%23f7f5ef'%3ESMB%3C/text%3E%3Ccircle cx='52' cy='39' r='4.5' fill='%230a8d6f'/%3E%3C/svg%3E">
                 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -90,6 +91,28 @@
                     html {
                         scroll-behavior: smooth;
                         background: #f7f5ef;
+                    }
+
+                    .skip-link {
+                        position: absolute;
+                        top: -100px;
+                        left: 16px;
+                        z-index: 9999;
+                        background: #15171e;
+                        color: #f7f5ef;
+                        padding: 12px 20px;
+                        font-family: 'JetBrains Mono', monospace;
+                        font-size: 12px;
+                        letter-spacing: 0.1em;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        transition: top 0.2s ease;
+                    }
+
+                    .skip-link:focus {
+                        top: 16px;
+                        outline: 2px solid #0a8d6f;
+                        outline-offset: 2px;
                     }
 
                     body {
@@ -308,7 +331,7 @@
                 <div id="blob-b" style="position: absolute; bottom: -25vh; right: -15vw; width: 60vw; height: 60vw; border-radius: 50%; background: radial-gradient(circle, rgba(106,91,224,0.10), rgba(106,91,224,0) 65%); animation: drift2 32s ease-in-out infinite; will-change: transform"></div>
             </div>
             <div id="scroll-progress" style="position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: linear-gradient(90deg, #0a8d6f, #6a5be0); transform-origin: 0 50%; transform: scaleX(0); z-index: 400"></div>
-            <nav id="site-nav" style="position: fixed; top: 0; left: 0; right: 0; z-index: 350; display: flex; align-items: center; justify-content: space-between; padding: 20px 7vw; background: linear-gradient(180deg, rgba(247,245,239,0.92), rgba(247,245,239,0)); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1)">
+            <nav id="site-nav" aria-label="Primary" style="position: fixed; top: 0; left: 0; right: 0; z-index: 350; display: flex; align-items: center; justify-content: space-between; padding: 20px 7vw; background: linear-gradient(180deg, rgba(247,245,239,0.92), rgba(247,245,239,0)); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1)">
                 <a href="#hero" data-hover="TOP" data-magnetic="1" style="font-weight: 900; font-size: 19px; letter-spacing: 0.03em; color: #15171e; text-decoration: none; font-stretch: 125%">
                     NP<span style="color: #0a8d6f">.</span>
                 </a>
@@ -319,10 +342,10 @@
                     <a href="#contact" data-nav="contact" data-hover="GO" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #15171e; text-decoration: none; transition: color 0.3s ease" style-hover="color: #0a8d6f">CONTACT</a>
                 </div>
             </nav>
-            <section id="hero" data-screen-label="Hero" style="position: relative; height: 100vh; min-height: 620px; overflow: hidden">
+            <section id="hero" data-screen-label="Hero" tabindex="-1" style="position: relative; height: 100vh; min-height: 620px; overflow: hidden">
                 <h1 style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); margin: 0">Neha Paul — Senior Product Designer</h1>
-                <canvas id="torus-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none"></canvas>
-                <canvas id="hero-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block"></canvas>
+                <canvas id="torus-canvas" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none"></canvas>
+                <canvas id="hero-canvas" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block"></canvas>
                 <div style="position: absolute; left: 7vw; top: 104px">
                     <div data-reveal="1" style="display: flex; flex-direction: column; gap: 8px">
                         <span data-scramble="1" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: #0a8d6f">SENIOR PRODUCT DESIGNER</span>
@@ -386,7 +409,7 @@
             </section>
             <section id="work" data-screen-label="Selected Work" style="position: relative; background: #efece3; z-index: 1">
                 <div style="position: sticky; top: 0; height: 100vh; overflow: hidden; border-top: 1px solid rgba(21,23,30,0.1)">
-                    <canvas id="mobius-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none"></canvas>
+                    <canvas id="mobius-canvas" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none"></canvas>
                     <div id="work-track" style="position: absolute; top: 0; left: 0; height: 100%; display: flex; align-items: center; gap: 8vw; padding: 70px 8vw 30px; will-change: transform">
                         <div style="flex: 0 0 auto; width: min(44vw, 600px); min-width: 300px; display: flex; flex-direction: column; gap: 18px">
                             <p data-reveal="1" data-scramble="1" style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: #0a8d6f">( 2021 — 2026 )</p>
