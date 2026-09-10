@@ -111,12 +111,6 @@ no build step, no framework. Canonical URLs point at `https://nehapaul.in/`.
 - Cross-browser rendering (only checked in the one engine available here).
 
 ### Known gaps still open on `main`
-- **`index.html` is ~4.3MB** — ~22 images embedded as base64 data URIs
-  instead of linked files. The whole document has to download before
-  anything renders, and images can't be cached separately. Own scoped fix
-  (extract to real files, decide where they're hosted — see the hotlinking
-  note above for why that's a real decision, not a silent one); not done as
-  part of this pass. See open decision #1.
 - **Full accessibility coverage is still incomplete**, even after the basic
   pass in commit `8df8ad1` (2026-09-10): that commit added a skip-link,
   `aria-hidden` on the three decorative canvases, and `aria-label="Primary"`
@@ -144,11 +138,12 @@ on. Don't treat its lack of these fixes as something to go fix.
 3. ~~Is a basic accessibility pass wanted (skip-link, ARIA labeling)?~~
    **Done**, `8df8ad1` 2026-09-10 — see "Known gaps still open on `main`"
    above for what that pass didn't cover.
-
-### Open decisions (not Claude's call — ask Bhavesh/Neha)
-1. Is a dedicated fix pass wanted for the 4.3MB image-bloat issue, and if so,
-   where should the extracted images live — repo `assets/`, the existing
-   `raw.githubusercontent.com/1mcreative/static` pattern, somewhere else?
-2. Is a deeper accessibility pass wanted — screen-reader labeling for the
-   scramble/reveal text animations, and `prefers-reduced-motion` coverage
-   for the torus/carousel animations (not just the intro preloader)?
+4. ~~Where should the 4.3MB embedded-image bloat go?~~ **Resolved by
+   default, not an explicit answer** — after this sat as an open question
+   through a couple of "continue" turns, extracted to repo-local
+   `assets/homepage/` (not the `raw.githubusercontent.com` hotlinking
+   pattern, since that would trade one fragility risk for another) in
+   commit `c36af31`, 2026-09-10. `index.html` 4.3MB → 210KB; found and
+   deduped 9 photos the marquee section embedded twice, so 22 data URIs
+   became 13 real files (2.0MB total). **If a different location was
+   actually wanted, this is easy to redo** — say so and it can move.

@@ -32,6 +32,8 @@ A professional portfolio website showcasing the UX/UI design work of Neha Paul, 
 
 ```
 ├── index.html                 # Main portfolio page — single-file template (canvas/JS-driven)
+├── assets/
+│   └── homepage/               # index.html's images (13 files, extracted from inline base64)
 ├── page/                      # Project case studies
 │   ├── ibm.html               # IBM Enterprise Design
 │   ├── chalo_chale.html       # Travel App Design (20 images)
@@ -124,11 +126,9 @@ The site is deployed via GitHub Pages, using the `CNAME` file to serve `nehapaul
 
 ## 📈 Performance
 
-### Known issue
-`index.html` is currently **~4.3MB** because ~22 project/photo images are embedded directly as base64 data URIs in the HTML instead of linked as separate files. That means the entire document has to download before anything renders, and the images can't be cached separately by the browser. This is a real performance cost and a deliberate, tracked follow-up (see `CLAUDE.md`) rather than something silently worked around — extracting those images to real files is its own scoped fix.
-
 ### What's already in place
-- **Lazy loading**: `page/*.html` images load as needed
+- **`index.html` is 210KB**, not 4.3MB — the homepage's images used to be embedded as base64 data URIs directly in the HTML; they're now real files under `assets/homepage/`, loaded in parallel and mostly lazily instead of blocking the whole document on one inline payload. (The marquee section turned out to embed the same 9 photos twice for its infinite-scroll loop — deduped down to 13 unique files, 2.0MB total.)
+- **Lazy loading**: homepage and `page/*.html` images load as needed
 - **Deferred scripts**: `page/*.html` JS doesn't block initial render
 - **Caching/Compression**: Handled by the hosting platform (GitHub Pages) — not configured at the repo level
 
