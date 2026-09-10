@@ -8,76 +8,50 @@ A professional portfolio website showcasing the UX/UI design work of Neha Paul, 
 
 ## 🎯 Key Features
 
-### ✨ **Professional Design**
-- Clean, modern design with consistent branding
-- Responsive layout optimized for all devices
-- Smooth animations and interactions
-- Professional typography using Poppins font
+### ✨ **Signature Homepage**
+
+- Canvas-drawn torus hero animation and a particle wordmark that assembles on load
+- ASCII-glyph "scramble" preloader and text reveals throughout
+- Horizontal scroll-driven "Selected Work" carousel with a live mobius-curve canvas backdrop
+- JetBrains Mono / Archivo typography, sticky nav, scroll-progress bar, live local-time footer
 
 ### 🔍 **SEO Optimized**
-- Complete SEO implementation with structured data
-- Open Graph and Twitter Card support
-- Canonical URLs and proper meta tags
-- Search engine friendly architecture
 
-### ♿ **Accessibility Compliant**
-- WCAG 2.1 AA compliance
-- Skip links for keyboard navigation
-- Comprehensive ARIA labels
-- Screen reader optimized
-- Semantic HTML structure
+- Unique title, meta description, and keyword targeting on every page
+- Open Graph and Twitter Card support, canonical URLs, `robots` meta
+- `Person` structured data (schema.org) with social profile links
+- Google Analytics (`G-MFQEMF55V1`) on every page
 
 ### 📱 **Responsive Design**
-- Mobile-first approach
-- Tablet and desktop optimizations
-- Touch-friendly interactions
-- Cross-browser compatibility
+
+- Mobile-first layout with dedicated overrides at 900px and 480px breakpoints
+- Verified with no horizontal scroll at 320px, 375px, 768px, 1024px, and 1920px viewports
+- Touch-friendly project carousel
 
 ## 📁 Project Structure
 
 ```
-├── index.html                 # Main portfolio page
+├── index.html                 # Main portfolio page — single-file template (canvas/JS-driven)
 ├── page/                      # Project case studies
-│   ├── ibm.html              # IBM Enterprise Design
-│   ├── chalo_chale.html      # Travel App Design (20 images)
-│   ├── eq.html               # Emotional Intelligence Platform
+│   ├── ibm.html               # IBM Enterprise Design
+│   ├── chalo_chale.html       # Travel App Design (20 images)
+│   ├── eq.html                # Emotional Intelligence Platform
 │   ├── internship_at_finance_ops.html # Finance Operations (21 images)
 │   ├── sustainable_banking_solutions.html # Green Banking + Video
-│   ├── wca.html              # Enterprise Design (76 images)
-│   └── resume.html           # Professional Resume
+│   ├── wca.html                # Enterprise Design (76 images)
+│   └── resume.html            # Professional Resume
 ├── style/
-│   └── styles.css            # Main stylesheet
+│   └── styles.css             # Stylesheet used by page/*.html (index.html styles itself inline)
 ├── script/
-│   └── script.js             # JavaScript functionality
-├── robots.txt                 # Crawler rules + sitemap pointer
-├── sitemap.xml                 # Full page listing for search engines
-├── CNAME                       # GitHub Pages custom domain (nehapaul.in)
-├── CLAUDE.md                   # Project goals & conventions for AI-assisted work
-└── README.md                 # This file
+│   └── script.js               # JavaScript used by page/*.html (index.html carries its own JS)
+├── robots.txt                  # Crawler rules + sitemap pointer
+├── sitemap.xml                  # Full page listing for search engines
+├── CNAME                        # GitHub Pages custom domain (nehapaul.in)
+├── CLAUDE.md                    # Project goals, conventions & current status for AI-assisted work
+└── README.md                  # This file
 ```
 
-## 🚀 Recent Improvements
-
-### ✅ **Complete Project Page Transformation**
-All project pages have been upgraded with:
-
-- **SEO Excellence**: Specific titles, descriptions, and structured data
-- **Professional Structure**: Hero sections with compelling descriptions
-- **Accessibility**: Skip links, ARIA labels, semantic HTML
-- **User Experience**: Scroll animations, loading optimizations
-- **Content Quality**: Descriptive alt text, proper headings
-
-### ✅ **Repository Management**
-- Added comprehensive `.gitignore` file
-- Organized file structure
-- Optimized for version control
-
-### ✅ **Enhanced Features**
-- Custom mouse pointer animations
-- Improved navigation consistency
-- Professional project introductions
-- View-full-size link for the resume image
-- Video accessibility for project demos
+`index.html` is self-contained: its `<head>` carries the page-level SEO/GA tags below, while fonts, page-scoped CSS, and the hero/carousel behavior live inline in the file itself rather than in `style/styles.css` or `script/script.js` (those two are used by the `page/*.html` case studies).
 
 ## 🎨 Design Philosophy
 
@@ -91,11 +65,11 @@ The portfolio reflects Neha's design philosophy of creating experiences that are
 
 ## 🛠️ Technical Stack
 
-- **HTML5**: Semantic markup and accessibility
-- **CSS3**: Modern layouts with Flexbox/Grid
-- **JavaScript**: Interactive elements and animations
-- **Google Fonts**: Poppins typography
-- **Schema.org**: Structured data for SEO
+- **HTML5**: Semantic sectioning (`nav`, `section`, `footer`, `article`)
+- **CSS3**: Flexbox/Grid layouts, `clamp()`-based fluid type, canvas-driven visuals
+- **JavaScript**: Vanilla JS component system driving the hero canvas, scroll carousel, and text-scramble effects
+- **Google Fonts**: Archivo + JetBrains Mono on the homepage; Poppins on the `page/*.html` case studies
+- **Schema.org**: `Person` structured data for SEO
 
 ## 📊 SEO Features
 
@@ -114,32 +88,24 @@ The portfolio reflects Neha's design philosophy of creating experiences that are
 - Open Graph for social sharing
 - Twitter Cards for rich previews
 - Canonical URLs for SEO
-- Comprehensive keyword optimization
+- Keyword targeting for both branded ("Neha Paul") and role searches (UX/UI/Experience/Product/Interaction Designer, UX/Experience Architect)
 
 ### Crawling
 - `robots.txt` + `sitemap.xml` at the repo root, listing every page
 
-## ♿ Accessibility Features
+## ♿ Accessibility
 
-- **Keyboard Navigation**: Full keyboard support
-- **Screen Readers**: Optimized for assistive technologies
-- **Color Contrast**: WCAG AA compliance
-- **Focus Management**: Clear focus indicators
-- **Skip Links**: Quick navigation for screen readers
+Current state, honestly: semantic HTML sectioning is in place, decorative canvases are marked `aria-hidden="true"`, and the homepage checks `prefers-reduced-motion` to skip the intro preloader for users who request it. It does **not** yet have a skip-link, ARIA labeling, or full keyboard/screen-reader optimization — that's a known gap on the current homepage template, not a shipped feature. Treat any accessibility claim beyond what's listed here as unverified until it's actually audited.
 
 ## 📱 Mobile Optimization
 
-### Responsive Breakpoints
-- **Mobile**: ≤575px
-- **Tablet**: 576px - 1100px
-- **Desktop**: >1100px
-- **Large screens**: ≥1400px
+### Responsive Breakpoints (homepage)
+- **≤480px**: phone-specific overrides (hero text position, card image heights, heading sizes)
+- **≤900px**: tablet/phone shared overrides (nav padding, work-carousel layout, section type scale)
+- **>900px**: desktop layout
 
-### Touch Interactions
-- Optimized button sizes (44px minimum)
-- Swipe-friendly galleries
-- Touch feedback animations
-- Mobile-specific layouts
+### Verified
+No horizontal scroll at 320px, 375px, 768px, 1024px, or 1920px viewport widths (checked via headless browser, `document.documentElement.scrollWidth` against `window.innerWidth`). Full manual/touch-device QA hasn't been done — see the "Not yet verified" section of `CLAUDE.md`.
 
 ## 🚀 Deployment
 
@@ -149,40 +115,36 @@ The portfolio reflects Neha's design philosophy of creating experiences that are
 git clone [repository-url]
 cd [project-directory]
 
-# Open in browser
-open index.html
+# Serve locally (no build step)
+python3 -m http.server
 ```
 
 ### Web Hosting
-The site is optimized for deployment on:
-- GitHub Pages
-- Netlify
-- Vercel
-- Any static hosting service
+The site is deployed via GitHub Pages, using the `CNAME` file to serve `nehapaul.in`.
 
 ## 📈 Performance
 
-### Optimization Features
-- **Lazy Loading**: Images load as needed (except the above-the-fold hero photo)
-- **Minimized HTTP Requests**: Efficient resource loading
-- **Deferred Scripts**: JS doesn't block initial page render
+### Known issue
+`index.html` is currently **~4.3MB** because ~22 project/photo images are embedded directly as base64 data URIs in the HTML instead of linked as separate files. That means the entire document has to download before anything renders, and the images can't be cached separately by the browser. This is a real performance cost and a deliberate, tracked follow-up (see `CLAUDE.md`) rather than something silently worked around — extracting those images to real files is its own scoped fix.
+
+### What's already in place
+- **Lazy loading**: `page/*.html` images load as needed
+- **Deferred scripts**: `page/*.html` JS doesn't block initial render
 - **Caching/Compression**: Handled by the hosting platform (GitHub Pages) — not configured at the repo level
 
 ## 🔧 Customization
 
-### Colors
+### Colors (homepage)
 ```css
-:root {
-  --primary-color: #CD4A00;
-  --text-color: #000000;
-  --background-color: #ffffff;
-}
+--bg: #f7f5ef;
+--text: #15171e;
+--accent-teal: #0a8d6f;
+--accent-purple: #6a5be0;
 ```
 
 ### Typography
-- Primary Font: Poppins (300, 400, 500, 600)
-- Responsive scaling
-- Optimized line heights
+- Homepage: Archivo (weight/width variable) + JetBrains Mono
+- `page/*.html` case studies: Poppins (300, 400, 500, 600)
 
 ## 📞 Contact & Social
 
