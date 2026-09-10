@@ -117,9 +117,13 @@ no build step, no framework. Canonical URLs point at `https://nehapaul.in/`.
   (extract to real files, decide where they're hosted — see the hotlinking
   note above for why that's a real decision, not a silent one); not done as
   part of this pass. See open decision #1.
-- **No skip-link or ARIA labeling on the new homepage** (the old design had
-  both). See `README.md`'s Accessibility section for exactly what's there
-  today. See open decision #2.
+- **Full accessibility coverage is still incomplete**, even after the basic
+  pass in commit `8df8ad1` (2026-09-10): that commit added a skip-link,
+  `aria-hidden` on the three decorative canvases, and `aria-label="Primary"`
+  on the nav — but the scramble/reveal text animations aren't labeled for
+  screen readers, and `prefers-reduced-motion` only gates the intro
+  preloader, not the torus/carousel animations elsewhere. Those are bigger,
+  separate pieces of work, not folded into that pass.
 - The template's file header still says "GENERATED... do not edit... Rebuild
   with `cd dc-runtime && bun run build`" — there's no such pipeline in this
   repo, so it remains a hand-edited static file like any other here.
@@ -137,10 +141,14 @@ on. Don't treat its lack of these fixes as something to go fix.
    describes it.
 2. ~~Should `page/*.html` case studies be linked from the homepage?~~ **Yes**
    — restored via the footer "CASE STUDIES" row.
+3. ~~Is a basic accessibility pass wanted (skip-link, ARIA labeling)?~~
+   **Done**, `8df8ad1` 2026-09-10 — see "Known gaps still open on `main`"
+   above for what that pass didn't cover.
 
 ### Open decisions (not Claude's call — ask Bhavesh/Neha)
 1. Is a dedicated fix pass wanted for the 4.3MB image-bloat issue, and if so,
    where should the extracted images live — repo `assets/`, the existing
    `raw.githubusercontent.com/1mcreative/static` pattern, somewhere else?
-2. Is a dedicated accessibility pass wanted for the new homepage (skip-link,
-   ARIA labeling) to bring it back in line with what the old design had?
+2. Is a deeper accessibility pass wanted — screen-reader labeling for the
+   scramble/reveal text animations, and `prefers-reduced-motion` coverage
+   for the torus/carousel animations (not just the intro preloader)?

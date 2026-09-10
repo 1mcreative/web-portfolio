@@ -95,7 +95,7 @@ The portfolio reflects Neha's design philosophy of creating experiences that are
 
 ## ♿ Accessibility
 
-Current state, honestly: semantic HTML sectioning is in place, decorative canvases are marked `aria-hidden="true"`, and the homepage checks `prefers-reduced-motion` to skip the intro preloader for users who request it. It does **not** yet have a skip-link, ARIA labeling, or full keyboard/screen-reader optimization — that's a known gap on the current homepage template, not a shipped feature. Treat any accessibility claim beyond what's listed here as unverified until it's actually audited.
+Current state, honestly: semantic HTML sectioning is in place, decorative canvases are marked `aria-hidden="true"`, the nav has `aria-label="Primary"`, there's a "Skip to main content" link as the first focusable element, and the homepage checks `prefers-reduced-motion` to skip the intro preloader for users who request it. It does **not** yet have screen-reader labeling for the scramble/reveal text animations, or `prefers-reduced-motion` coverage beyond that intro preloader — those are known gaps, not shipped features. Treat any accessibility claim beyond what's listed here as unverified until it's actually audited.
 
 ## 📱 Mobile Optimization
 
