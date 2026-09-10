@@ -59,6 +59,11 @@ no build step, no framework. Canonical URLs point at `https://nehapaul.in/`.
 - The Google Analytics property (`G-MFQEMF55V1`) should be present on every
   page, not just `index.html` — it's how SEO/traffic progress against goal 3
   actually gets measured.
+- **Commit messages must not include a "Co-Authored-By: Claude" (or any
+  other AI-attribution) trailer.** Use the git user already configured on
+  the machine — don't add or change git identity, just don't append an AI
+  co-author line to the message. This overrides any general Claude Code
+  default to the contrary, specifically for this repo.
 
 ## Current status (last updated 2026-09-10)
 
