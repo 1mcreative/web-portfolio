@@ -78,15 +78,25 @@ there (GA tag, full SEO meta, case-study footer links, README rewrite) on
 status. Don't take the image-extraction exception as a sign this branch is
 generally back in play — check before doing anything else here.
 
-### Image extraction (the one exception — done here, not on `main`)
+### Image extraction (the one exception — done here, not on `main`) — now mid-flight
 `index.html` was 4.3MB from ~22 images embedded as base64 data URIs. Commit
 `340d270` (2026-09-10) extracted them to `assets/homepage/` and rewrote the
-`src` paths — same process used (and then reverted) on `main`. Found the
-marquee section embeds the same 9 photos twice for its infinite-scroll
-loop; deduped to 13 unique files (2.0MB). `index.html` is now 204KB.
-Verified: all 13 files decode as valid, correctly-dimensioned images: no
-console errors, no horizontal overflow. This branch's `index.html` still
-has no `<title>`/SEO meta/GA tag — those weren't part of this exception.
+`src` paths (13 deduped files after finding the marquee embeds 9 photos
+twice for its infinite-scroll loop). `index.html` dropped to 204KB this way.
+
+That local-folder approach conflicted with the (then-unknown) preference to
+keep all project images in the separate `1mcreative/static` repo — see the
+hotlinking note above. Per Bhavesh (2026-09-10), the 9 marquee JPGs were
+removed from `assets/homepage/` in commit `d833213` — **but `index.html`'s
+18 `src="assets/homepage/img-0[5-9,1-3].jpg"` references were deliberately
+left as-is**, pointing at files that no longer exist. This is expected and
+temporary, not a bug: Bhavesh is adding fresh images to `1mcreative/static`
+and will provide the real reference paths next. When that happens, update
+those 18 `src` attributes to the new `raw.githubusercontent.com/1mcreative/
+static/...` URLs (matching the pattern already used for the IBM gallery on
+`redesign-simki-inspired`) rather than re-extracting to a local folder
+again. Until then, don't treat the broken image paths as something to fix
+unprompted — this branch isn't the live site.
 
 ### What happened on this branch
 - `index.html` was blanked (`b416719`) and rebuilt from scratch as a new
