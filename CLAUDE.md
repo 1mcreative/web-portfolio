@@ -44,10 +44,17 @@ no build step, no framework. Canonical URLs point at `https://nehapaul.in/`.
 
 ## Working conventions for this repo
 
-- **`main`** is the stable branch — documentation and settled work.
-- In-progress work lands on a feature branch first (e.g. the 2026-09 redesign
-  branch `redesign-simki-inspired`) and merges to `main` once verified, rather
-  than committing unreviewed changes straight to `main`.
+- **`redesign-simki-inspired` is what's actually live at nehapaul.in** —
+  confirmed via `gh api repos/1mcreative/web-portfolio/pages` on 2026-09-10:
+  GitHub Pages source is `{"branch":"redesign-simki-inspired","path":"/"}`,
+  not `main`. This directly contradicts the "`main` is the stable branch"
+  framing that used to be here (and still appears in `main`'s and
+  `blank-canvas`'s own copies of this file, written before this was
+  checked) — don't trust that framing without re-verifying the Pages API,
+  since the deployed branch can change. Practically: a push to this branch
+  goes live essentially immediately (GitHub Pages rebuilds automatically),
+  so treat changes here with the same care as a production deploy — verify
+  before pushing, not just before merging somewhere else later.
 - Every route is a folder + `index.html` (`/work/ibm/index.html`, not
   `/work/ibm.html`) so URLs never show `.html` — GitHub Pages needs that
   pattern to hide the extension, since it can't do server-side redirects.
