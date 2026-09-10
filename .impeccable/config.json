@@ -128,6 +128,15 @@
         ],
         "createdAt": "2026-09-10T15:07:03.694Z",
         "reason": "Site-wide false positive: body{overflow-x:clip} + .skip-link{position:fixed}. position:fixed's containing block is the viewport per CSS spec, not an overflow-clipping ancestor (no transform/filter/perspective present here to change that) - not actually clippable in real browsers despite matching the heuristic. Confirmed across multiple edits this session on work/ibm/ and work/sustainable-banking/; applying proactively to the remaining pages sharing this same header markup"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-10T15:24:07.040Z",
+        "reason": "Same confirmed-deliberate #F5F1E7 warm-paper palette already ignored on work/ibm/index.html and work/sustainable-banking/index.html - documented in this branch's CLAUDE.md as the intentional 2026-09 redesign identity, not an AI-default reflex"
       }
     ]
   }
