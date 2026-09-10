@@ -62,12 +62,24 @@ no build step, no framework. Canonical URLs point at `https://nehapaul.in/`.
 
 ## Current status (last updated 2026-09-10)
 
-**This branch is now frozen as a reference/experimental snapshot.** Its
-`index.html` was ported to `main` and hardened there (GA tag, full SEO meta,
-case-study footer links, README rewrite) on 2026-09-10 — see `main`'s
-`CLAUDE.md` for the current, actively-maintained status. Nothing on this
-branch was touched as part of that port; everything below describes this
-branch's own history, which stays accurate for what's actually still here.
+**This branch is now frozen as a reference/experimental snapshot**, with one
+explicit exception: the base64-image extraction (below) was moved here from
+`main` per request on 2026-09-10, after first being done on `main` and
+reverted there. Otherwise: `index.html` was ported to `main` and hardened
+there (GA tag, full SEO meta, case-study footer links, README rewrite) on
+2026-09-10 — see `main`'s `CLAUDE.md` for the current, actively-maintained
+status. Don't take the image-extraction exception as a sign this branch is
+generally back in play — check before doing anything else here.
+
+### Image extraction (the one exception — done here, not on `main`)
+`index.html` was 4.3MB from ~22 images embedded as base64 data URIs. Commit
+`340d270` (2026-09-10) extracted them to `assets/homepage/` and rewrote the
+`src` paths — same process used (and then reverted) on `main`. Found the
+marquee section embeds the same 9 photos twice for its infinite-scroll
+loop; deduped to 13 unique files (2.0MB). `index.html` is now 204KB.
+Verified: all 13 files decode as valid, correctly-dimensioned images: no
+console errors, no horizontal overflow. This branch's `index.html` still
+has no `<title>`/SEO meta/GA tag — those weren't part of this exception.
 
 ### What happened on this branch
 - `index.html` was blanked (`b416719`) and rebuilt from scratch as a new
@@ -90,8 +102,6 @@ branch's own history, which stays accurate for what's actually still here.
 - No Google Analytics tag on `index.html`.
 - No SEO meta at all — no `<title>`, meta description, canonical link, OG/
   Twitter tags, or structured data.
-- `index.html` is ~4.3MB (22 images embedded as base64 data URIs) — this
-  gap is also still open on `main`, not unique to this branch.
 - No links from the homepage to the `page/*.html` case studies.
 - `README.md` here still describes the pre-`blank-canvas` (`main`'s old)
   design — also not fixed here.
