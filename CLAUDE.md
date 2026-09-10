@@ -42,7 +42,13 @@ no build step, no framework. Canonical URLs point at `https://nehapaul.in/`.
 
 ## Working conventions for this repo
 
-- **`main`** is the stable branch — documentation and settled work.
+- **Neither `main` nor `blank-canvas` is what's deployed to nehapaul.in** —
+  confirmed via `gh api repos/1mcreative/web-portfolio/pages` on 2026-09-10:
+  GitHub Pages source is `{"branch":"redesign-simki-inspired","path":"/"}`.
+  Everything in this file describing `main` as "the stable branch" was
+  written believing that, wrongly — re-verify the Pages API before trusting
+  branch-stability claims anywhere in this repo's docs, since the deployed
+  branch can change.
 - **`blank-canvas` is now frozen** (as of 2026-09-10) — its homepage redesign
   was ported to `main` and hardened there. Further in-progress work should
   happen on `main` directly (or a fresh branch cut from it), not here.
