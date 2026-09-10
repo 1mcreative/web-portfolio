@@ -18,11 +18,13 @@ no build step, no framework. Canonical URLs point at `https://nehapaul.in/`.
 
 2. **Attractive enough to win client work.** This site's job is to make visitors
    want to hire Neha. Visual polish, smooth interactions, and a professional feel
-   matter as much as correctness. The existing signature touches (the glowing
-   cursor/photo-proximity effect, the animated text loader) are intentional
-   brand personality — don't flatten them out in the name of "cleanup" without
-   asking first. If a real redesign or visual pass is wanted, treat it as its own
-   scoped piece of work, not a side effect of a bug-fix pass.
+   matter as much as correctness. The current signature touches (the canvas-drawn
+   torus hero, the particle wordmark, the ASCII-glyph scramble preloader and text
+   reveals — adopted from this branch onto `main` on 2026-09-10, see Current
+   status below) are intentional brand personality — don't flatten them out in
+   the name of "cleanup" without asking first. If a real redesign or visual pass
+   is wanted, treat it as its own scoped piece of work, not a side effect of a
+   bug-fix pass.
 
 3. **SEO: rank for both branded and role searches.** People should find this site
    searching "Neha Paul", "Neha Paul UX", "Neha Paul Experience Designer", etc.,
@@ -41,11 +43,11 @@ no build step, no framework. Canonical URLs point at `https://nehapaul.in/`.
 ## Working conventions for this repo
 
 - **`main`** is the stable branch — documentation and settled work.
-- **The active in-progress branch** is `blank-canvas` (as of 2026-09-10) —
-  in-progress fixes, responsiveness work, and polish land there first. Merge
-  to `main` once verified rather than committing unreviewed changes straight
-  to `main`. (`2026-06-26-r71q`, the previous enhancement branch, is already
-  merged into `main` via PR #1 — don't confuse the two.)
+- **`blank-canvas` is now frozen** (as of 2026-09-10) — its homepage redesign
+  was ported to `main` and hardened there. Further in-progress work should
+  happen on `main` directly (or a fresh branch cut from it), not here.
+  (`2026-06-26-r71q`, the enhancement branch before this one, was merged into
+  `main` via PR #1 earlier — don't confuse the two.)
 - Before marking any layout/CSS change done, start a local server and check it
   in a browser at mobile, tablet, and desktop widths at minimum — see goal 1.
   `python3 -m http.server` from the repo root is enough; there's no build step.
@@ -60,77 +62,45 @@ no build step, no framework. Canonical URLs point at `https://nehapaul.in/`.
 
 ## Current status (last updated 2026-09-10)
 
-### Branches
-- `main` and `blank-canvas` are identical up through commit `1eda3e8` (the
-  `2026-06-26-r71q` enhancement branch, merged via PR #1). `blank-canvas`
-  then diverged and is now the active in-progress branch — **not yet merged
-  into `main`.**
-- `main` still has the **old** `index.html`: Poppins font, `#CD4A00` accent,
-  custom mouse-pointer effect — the design `README.md` currently describes.
-- On `blank-canvas`, `index.html` was blanked (`b416719`) and rebuilt from
-  scratch as a new hand-authored single-file template (`6eeadd0`) — a full
-  redesign, not an edit of the old page.
+**This branch is now frozen as a reference/experimental snapshot.** Its
+`index.html` was ported to `main` and hardened there (GA tag, full SEO meta,
+case-study footer links, README rewrite) on 2026-09-10 — see `main`'s
+`CLAUDE.md` for the current, actively-maintained status. Nothing on this
+branch was touched as part of that port; everything below describes this
+branch's own history, which stays accurate for what's actually still here.
 
-### Done on `blank-canvas` (as of commit `a85ac32`, 2026-09-10)
-- New template for `index.html`: canvas-drawn torus hero animation,
-  scroll-driven "Selected Work" carousel, ASCII-glyph scrambling name
-  preloader, JetBrains Mono / Archivo type, sticky nav + scroll-progress bar,
-  footer with live local time.
-- Full rebrand: replaced the template's placeholder identity (name, initials,
-  session-storage key, canvas wordmark, footer copyright, preloader text,
-  runtime-assembled email) with Neha Paul's own (`60836c7`).
-- Fixed the one thing the rebrand missed: the LinkedIn link pointed to the
-  template author's profile; now points to
-  `linkedin.com/in/neha-paul-b95605157/` (`a85ac32`).
-- Both commits pushed to `origin/blank-canvas`.
+### What happened on this branch
+- `index.html` was blanked (`b416719`) and rebuilt from scratch as a new
+  hand-authored single-file template (`6eeadd0`) — a full redesign, not an
+  edit of the old page.
+- New template: canvas-drawn torus hero animation, scroll-driven "Selected
+  Work" carousel, ASCII-glyph scrambling name preloader, JetBrains Mono /
+  Archivo type, sticky nav + scroll-progress bar, footer with live local
+  time.
+- Full rebrand: replaced the template's placeholder identity (name,
+  initials, session-storage key, canvas wordmark, footer copyright,
+  preloader text, runtime-assembled email, LinkedIn URL) with Neha Paul's
+  own (`60836c7`, `a85ac32`).
+- On 2026-09-10 this design was reviewed, found to be missing GA/SEO meta
+  and homepage links to the case studies (listed below) — and rather than
+  fixing those here, the template was ported to `main` and fixed there
+  instead. This branch was deliberately left as-is.
 
-### Not yet verified
-- Goal 1's browser check (mobile/tablet/desktop widths, no horizontal
-  scroll, touch targets) has **not** been run against the new template —
-  do this before calling it done, per the working convention above.
-- Whether the new JS (torus canvas, scroll carousel, preloader) respects
-  `prefers-reduced-motion`, or degrades reasonably with JS off/slow.
+### What's still missing here (by design — not fixed on this branch)
+- No Google Analytics tag on `index.html`.
+- No SEO meta at all — no `<title>`, meta description, canonical link, OG/
+  Twitter tags, or structured data.
+- `index.html` is ~4.3MB (22 images embedded as base64 data URIs) — this
+  gap is also still open on `main`, not unique to this branch.
+- No links from the homepage to the `page/*.html` case studies.
+- `README.md` here still describes the pre-`blank-canvas` (`main`'s old)
+  design — also not fixed here.
+- No skip-link or ARIA labeling (also still true on `main`).
+- The template's own file header says "GENERATED... do not edit... Rebuild
+  with `cd dc-runtime && bun run build`" — exported from a design tool, not
+  hand-written. There's no such build pipeline in this repo, so this file
+  was always going to be hand-edited directly regardless of that header.
 
-### Known gaps (found reviewing `blank-canvas` on 2026-09-10)
-- **No Google Analytics tag on `index.html`.** `G-MFQEMF55V1` is present on
-  every `page/*.html` file but missing from the new `index.html` — the one
-  page goal 3 cares about most for measuring traffic.
-- **No SEO meta on `index.html` at all** — no `<title>`, meta description,
-  canonical link, Open Graph/Twitter tags, or structured data. Every
-  `page/*.html` case study has a proper unique title; only the new homepage
-  is missing this. Regression against goal 3, introduced by the rebuild.
-- **`index.html` is ~4.3MB** (vs. 6–16KB for `page/*.html` files) — it embeds
-  ~22 images as base64 data URIs directly in the HTML instead of linking
-  files. Not the `raw.githubusercontent.com` hotlinking risk above (no
-  hotlinked images in the new template at all); it's arguably worse — the
-  whole document must download before anything renders, and images can't be
-  browser-cached separately. Treat as its own scoped fix (e.g. extract to
-  real files) — don't silently rewrite a 4.3MB file as a side effect of
-  something else.
-- **New homepage doesn't link to the `page/*.html` case studies.** "Selected
-  Work" links out to Figma/Behance instead. The six case-study pages plus
-  `resume.html` still exist, are listed in `sitemap.xml`, and have working
-  SEO — but nothing on the new homepage links to them anymore. See open
-  decision #2 below.
-- **The template's own file header says "GENERATED... do not edit... Rebuild
-  with `cd dc-runtime && bun run build`"** — it was exported from a design
-  tool, not hand-written (the custom `<x-dc>`/`<helmet>` tags and
-  base64-eval'd bootstrap scripts near the top of the file are that tool's
-  scaffold). There's no such build pipeline in this repo, so — consistent
-  with the no-build-step convention for this project — all edits so far have
-  been direct hand-edits to the static HTML, same as any other file here.
-- **`README.md` still describes the *old* `main` design** (Poppins font,
-  `#CD4A00` color, structured data/OG tags that don't exist in the new
-  `index.html` yet). Rewrite it once the gaps above are settled, not before,
-  so it doesn't describe content that's still in flux.
-
-### Open decisions (not Claude's call — ask Bhavesh/Neha)
-1. Is the `blank-canvas` template the accepted final direction, replacing the
-   "glowing cursor/photo-proximity effect" and "animated text loader" that
-   goal 2 currently names as signature touches? If so, goal 2 should be
-   reworded to describe the new template's own signature touches instead.
-2. Should the `page/*.html` case studies be linked from the new homepage, or
-   are they superseded by the Figma/Behance links now?
-3. When is `blank-canvas` ready to merge into `main`? Per the working
-   convention above: once verified (goal 1 browser check + SEO gaps closed),
-   not before.
+**Don't "fix" the items above on this branch** — that work already happened
+on `main`. If you're picking up homepage work, check out `main`, not
+`blank-canvas`.
