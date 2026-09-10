@@ -259,7 +259,7 @@
             <div id="scroll-progress" style="position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: linear-gradient(90deg, #0a8d6f, #6a5be0); transform-origin: 0 50%; transform: scaleX(0); z-index: 400"></div>
             <nav id="site-nav" style="position: fixed; top: 0; left: 0; right: 0; z-index: 350; display: flex; align-items: center; justify-content: space-between; padding: 20px 7vw; background: linear-gradient(180deg, rgba(247,245,239,0.92), rgba(247,245,239,0)); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1)">
                 <a href="#hero" data-hover="TOP" data-magnetic="1" style="font-weight: 900; font-size: 19px; letter-spacing: 0.03em; color: #15171e; text-decoration: none; font-stretch: 125%">
-                    SMB<span style="color: #0a8d6f">.</span>
+                    NP<span style="color: #0a8d6f">.</span>
                 </a>
                 <div style="display: flex; align-items: center; gap: 30px">
                     <a href="#work" data-nav="work" data-hover="GO" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #5b6172; text-decoration: none; transition: color 0.3s ease" style-hover="color: #0a8d6f">WORK</a>
@@ -269,7 +269,7 @@
                 </div>
             </nav>
             <section id="hero" data-screen-label="Hero" style="position: relative; height: 100vh; min-height: 620px; overflow: hidden">
-                <h1 style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); margin: 0">Sumesh Magesh Babu — Senior Product Designer</h1>
+                <h1 style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); margin: 0">Neha Paul — Senior Product Designer</h1>
                 <canvas id="torus-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none"></canvas>
                 <canvas id="hero-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block"></canvas>
                 <div style="position: absolute; left: 7vw; top: 104px">
@@ -288,7 +288,7 @@
                     <p data-reveal="1" data-delay="600" style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #8a8f9c; animation: blink 3.2s ease-in-out infinite; white-space: nowrap">[ RUN YOUR CURSOR THROUGH IT — TAP TO DETONATE ]</p>
                 </div>
                 <div style="position: absolute; left: 7vw; bottom: 36px">
-                    <span data-reveal="1" data-delay="300" data-scramble="1" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: #8a8f9c; display: inline-block">( MAGESH BABU )</span>
+                    <span data-reveal="1" data-delay="300" data-scramble="1" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: #8a8f9c; display: inline-block">( PAUL )</span>
                 </div>
                 <div style="position: absolute; right: 7vw; bottom: 36px; display: flex; align-items: center; gap: 10px">
                     <span data-reveal="1" data-delay="300" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: #8a8f9c; display: inline-block">SCROLL</span>
@@ -559,7 +559,7 @@
                             <span id="local-time" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #8a8f9c">—:— PT</span>
                         </div>
                     </div>
-                    <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; color: #b3aea1">© 2026 SUMESH MAGESH BABU · DESIGNED &amp; ANIMATED BY HAND · SET IN ARCHIVO · PRESS H FOR HORSEPOWER</p>
+                    <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; color: #b3aea1">© 2026 NEHA PAUL · DESIGNED &amp; ANIMATED BY HAND · SET IN ARCHIVO · PRESS H FOR HORSEPOWER</p>
                 </div>
             </footer>
         </x-dc>
@@ -685,13 +685,13 @@ class Component extends DCLogic {
 
   /* ---------- preloader ---------- */
   preload() {
-    if (sessionStorage.getItem('smb-seen-v3') || this.reduced) return;
-    sessionStorage.setItem('smb-seen-v3', '1');
+    if (sessionStorage.getItem('np-seen-v3') || this.reduced) return;
+    sessionStorage.setItem('np-seen-v3', '1');
     const o = document.createElement('div');
     o.style.cssText = 'position:fixed;inset:0;background:#f7f5ef;z-index:600;display:flex;align-items:center;justify-content:center;transition:transform 0.9s cubic-bezier(0.76,0,0.24,1)';
     const name = document.createElement('div');
     name.style.cssText = "font-family:Archivo,sans-serif;font-weight:900;font-stretch:125%;font-size:clamp(28px,5vw,72px);letter-spacing:0.04em;color:#15171e;display:flex";
-    const txt = 'SUMESH M. BABU';
+    const txt = 'NEHA PAUL';
     const glyphs = '█▓▒░<>/#%&@$';
     const spans = [];
     for (const ch of txt) {
@@ -1070,10 +1070,10 @@ class Component extends DCLogic {
     const bandH = Math.max(160, bandBottom - bandTop);
     let fs = Math.min(W / 4.6, bandH / 2.35);
     octx.font = '900 ' + fs + 'px Archivo, sans-serif';
-    while (octx.measureText('SUMESH').width > W * 0.84 && fs > 20) { fs -= 4; octx.font = '900 ' + fs + 'px Archivo, sans-serif'; }
+    while (octx.measureText('NEHA').width > W * 0.84 && fs > 20) { fs -= 4; octx.font = '900 ' + fs + 'px Archivo, sans-serif'; }
     const cyName = bandTop + bandH / 2;
-    octx.fillText('SUMESH', W / 2, cyName - fs * 0.54);
-    octx.fillText('M. BABU', W / 2, cyName + fs * 0.54);
+    octx.fillText('NEHA', W / 2, cyName - fs * 0.54);
+    octx.fillText('PAUL', W / 2, cyName + fs * 0.54);
     const data = octx.getImageData(0, 0, W, H).data;
 
     const gap = Math.max(4, Math.round(Math.min(W, H) / (this.fine ? 150 : 110)));
@@ -1412,7 +1412,7 @@ class Component extends DCLogic {
 
   /* ---------- email links (assembled at runtime so the host can't rewrite them) ---------- */
   wireEmail() {
-    const addr = ['sumesh', 'mageshbabu'].join('.') + String.fromCharCode(64) + ['gmail', 'com'].join('.');
+    const addr = ['neha', 'paul1610'].join('.') + String.fromCharCode(64) + ['gmail', 'com'].join('.');
     document.querySelectorAll('[data-email]').forEach((a) => { a.setAttribute('href', 'mai' + 'lto:' + addr); });
     document.querySelectorAll('[data-email-text]').forEach((a) => { a.textContent = addr.toUpperCase(); });
   }
