@@ -29,6 +29,42 @@
         ],
         "createdAt": "2026-09-08T17:59:10.803Z",
         "reason": "Verified against actual CSS, not assumed: .work-list/.work-entry declare no padding of their own, but the nested .work-entry a (the real text-bearing element) has padding:2rem 0 -- 32px, well above the 8-16px floor -- which is what actually renders; detector isn't tracing padding through to a descendant. .section/.section-ink padding is clamp(4rem,3rem+5vw,8rem) clamp(1.25rem,1rem+2vw,3rem) -- 64-128px/20-48px -- real and substantial; likely a clamp()/custom-property resolution limit in the static check. Confirmed comfortable spacing in live screenshots both cases."
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "work/ibm/index.html"
+        ],
+        "createdAt": "2026-09-10T13:17:32.379Z",
+        "reason": "CLAUDE.md documents #F5F1E7 warm-paper background as the deliberate 2026-09 redesign palette, not an AI-default reflex; pre-existing sitewide, not introduced by this session's edit"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "work/sustainable-banking/index.html"
+        ],
+        "createdAt": "2026-09-10T13:17:32.403Z",
+        "reason": "same pre-existing sitewide palette as work/ibm/index.html, documented deliberate in CLAUDE.md"
+      },
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          "work/ibm/index.html"
+        ],
+        "createdAt": "2026-09-10T13:17:32.427Z",
+        "reason": "1.02 line-height is on .cs-title (large display heading), a standard tight-leading convention for big type, not body text (body text is 1.6). Pre-existing sitewide CSS, not introduced by this session's edit which only added <img> tags"
+      },
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          "work/sustainable-banking/index.html"
+        ],
+        "createdAt": "2026-09-10T13:17:32.450Z",
+        "reason": "same pre-existing heading line-height as work/ibm/index.html"
       }
     ]
   }
