@@ -65,10 +65,13 @@ no build step, no framework. Canonical URLs point at `https://nehapaul.in/`.
 ### Branches — now diverged in purpose, not just content
 - `main` now carries the redesigned homepage, ported from `blank-canvas` and
   hardened for production (see "Done on `main`" below).
-- `blank-canvas` is **frozen as a snapshot of the original experiment** — its
-  `index.html` still has the pre-hardening gaps (no GA, no SEO meta, no
-  case-study links). That's intentional, not an oversight — see "Known gaps
-  on `blank-canvas`" below. Nobody should be iterating there right now.
+- `blank-canvas` is **frozen as a snapshot of the original experiment**, with
+  one explicit exception: the base64-image extraction now lives there
+  instead of `main` (moved 2026-09-10 at request — see resolved decision #4
+  below). Otherwise it still has the pre-hardening gaps (no GA, no SEO meta,
+  no case-study links) — intentional, not an oversight. Don't do other
+  work there without checking first; the image-extraction move was a
+  one-off exception, not a sign this branch is generally back in play.
 - This was a **manual port** (`git checkout blank-canvas -- index.html` +
   hand-edits on `main`), not a `git merge` — `blank-canvas` is not an
   ancestor of `main`'s current tip. Don't `git merge blank-canvas` into
@@ -111,6 +114,10 @@ no build step, no framework. Canonical URLs point at `https://nehapaul.in/`.
 - Cross-browser rendering (only checked in the one engine available here).
 
 ### Known gaps still open on `main`
+- **`index.html` is ~4.3MB again** — the base64-image extraction (see
+  resolved decision #4 below) was reverted 2026-09-10 (`7bd6084`) and moved
+  to `blank-canvas` instead, per request. Don't re-extract on `main` without
+  checking first — this has now gone back and forth once already.
 - **Full accessibility coverage is still incomplete**, even after the basic
   pass in commit `8df8ad1` (2026-09-10): that commit added a skip-link,
   `aria-hidden` on the three decorative canvases, and `aria-label="Primary"`
@@ -138,12 +145,10 @@ on. Don't treat its lack of these fixes as something to go fix.
 3. ~~Is a basic accessibility pass wanted (skip-link, ARIA labeling)?~~
    **Done**, `8df8ad1` 2026-09-10 — see "Known gaps still open on `main`"
    above for what that pass didn't cover.
-4. ~~Where should the 4.3MB embedded-image bloat go?~~ **Resolved by
-   default, not an explicit answer** — after this sat as an open question
-   through a couple of "continue" turns, extracted to repo-local
-   `assets/homepage/` (not the `raw.githubusercontent.com` hotlinking
-   pattern, since that would trade one fragility risk for another) in
-   commit `c36af31`, 2026-09-10. `index.html` 4.3MB → 210KB; found and
-   deduped 9 photos the marquee section embedded twice, so 22 data URIs
-   became 13 real files (2.0MB total). **If a different location was
-   actually wanted, this is easy to redo** — say so and it can move.
+4. ~~Where should the 4.3MB embedded-image bloat go?~~ **Extracted to
+   `blank-canvas`, not `main`.** First tried on `main` by default (commit
+   `c36af31`, extracted to `assets/homepage/`, 22 base64 data URIs → 13
+   deduped real files, `index.html` 4.3MB → 210KB) — then reverted there
+   (`7bd6084`) and redone on `blank-canvas` instead, per explicit request
+   2026-09-10. `main`'s `index.html` is back to embedded base64 / 4.3MB.
+   See `blank-canvas`'s own `CLAUDE.md` for that branch's current state.
