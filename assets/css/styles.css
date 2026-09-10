@@ -151,8 +151,7 @@ p {
     height: 1px !important;
     padding: 0 !important;
     margin: -1px !important;
-    overflow: hidden !important;
-    clip: rect(0, 0, 0, 0) !important;
+    clip-path: inset(50%) !important;
     white-space: nowrap !important;
     border: 0 !important;
 }
@@ -785,6 +784,30 @@ p {
 .cs-gallery img {
     width: 100%;
     border-radius: var(--radius);
+    display: block;
+}
+
+.video-section {
+    max-width: var(--max-width);
+    margin: 0 auto var(--sp-24);
+    padding: 0 var(--edge-pad);
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--ink-12);
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
     display: block;
 }
 
